@@ -2,10 +2,12 @@ NAME			:= cub3d
 
 LIBFT			:= libftprintf/libftprintf.a
 CC 				:= cc
-CFLAGS 			:= -Wall -Werror -Wextra
+CFLAGS 			:= -Wall -Werror -Wextra -g3
 
 SRC 			:= source/main.c \
-				   source/parsing/utils.c
+				   source/parsing/utils.c \
+				   source/parsing/utils_two.c \
+				   source/parsing/get_raw_map.c \
 
 GCL				:= git clone
 MINILIBX_SRC	:= https://github.com/42Paris/minilibx-linux.git
