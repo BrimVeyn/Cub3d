@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 08:28:41 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/03 16:51:40 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:35:50 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,7 @@ void display(char **map)
 		printf("%s\n", map[i]);
 }
 
-char **fill_directions()
-{
-	char **directions;
 
-	directions = ft_calloc(5, sizeof(char *));
-	directions[0] = ft_strdup("NO");
-	directions[1] = ft_strdup("SO");
-	directions[2] = ft_strdup("WE");
-	directions[3] = ft_strdup("EA");
-	return (directions);
-}
 
 
 int check_perms(t_data *data)
@@ -58,28 +48,73 @@ int ws_count(char *str)
 	return (i);
 }
 
+int ft_directioncmp(char *str)
+{
+	if (!ft_strncmp(str, "NO", 2))
+		return (DIR_NO);
+	if (!ft_strncmp(str, "SO", 2))
+		return (DIR_SO);
+	if (!ft_strncmp(str, "WE", 2))
+		return (DIR_WE);
+	if (!ft_strncmp(str, "EA", 2))
+		return (DIR_EA);
+	return (ERROR);
+}
+
+char	**ft_delindex(char **split, int i)
+{
+	char	**new;
+	int		j;
+	int		k;
+
+	j = 0;
+	k = 0;
+	new = ft_calloc(ft_tablen(split) + 2, sizeof(char *));
+	while (split[j] && j != i)
+	{
+		new[k++] = ft_strdup(split[j]);
+		j++;
+	}
+	j++;
+	while (split[j])
+	{
+		new[k++] = ft_strdup(split[j]);
+		j++;
+	}
+	if (!new[0])
+		new[0] = ft_strdup("WRONG");
+	free_tab(split);
+	return (new);
+}
 
 int get_texture_paths(t_data *data)
 {
 	int i;
 	int off;
-	char **directions;
+	int count;
+	int dir;
 
 	i = 0;
-	directions = fill_directions();
+	count = 0;
 	data->texture_paths = ft_calloc(5, sizeof(char *));
-	while (i < 4)
+	while (data->map[i] && count < 4)
 	{
 		off = ws_count(data->map[i]);
-		if (ft_strncmp(&data->map[i][off], directions[i], 2))
-			return (free_tab(directions), ERROR);
-		off += ws_count(&data->map[i][off + 2]);
-		data->texture_paths[i] = ft_substr(data->map[i], off + 2, ft_strlen(data->map[i]) - 3);
-		i++;
+		dir = ft_directioncmp(&data->map[i][off]);
+		if (dir != ERROR)
+        {
+			off += ws_count(&data->map[i][off + 2]);
+			data->texture_paths[dir] = ft_substr(data->map[i], off + 2, ft_strlen(data->map[i]) - 3);
+			data->map = ft_delindex(data->map, i);
+			count++;
+			i = 0;
+        }
+		else
+			i++;
 	}
-	if (check_perms(data) == ERROR)
-		return (free_tab(directions), ERROR);
-	return (free_tab(directions), TRUE);
+	if (count != 4 || check_perms(data) == ERROR)
+		return (ERROR);
+	return (TRUE);
 }
 
 int color_check(char *str)
@@ -130,26 +165,43 @@ int get_componants(t_data *data, int i)
 	return (TRUE);
 }
 
+int ft_colorcmp(char *str)
+{
+	if (!ft_strncmp(str, "F", 1))
+		return (C_F);
+	if (!ft_strncmp(str, "C", 1))
+		return (C_C);
+	return (ERROR);
+}
+
 int get_colors(t_data *data)
 {
 	int i;
-	char *colors[2];
+	int count;
+	int idx;
+	int off;
 
 	i = 0;
-	colors[0] = "F ";
-	colors[1] = "C ";
+	count = 0;
 	data->colors[0] = 0;
 	data->colors[1] = 0;
-	while (i < 2)
+	while (data->map[i])
 	{
-		if (ft_strncmp(data->map[i], colors[i], 2))
-			return (ERROR);
-		if (color_check(&data->map[i][2]) == ERROR)
-			return (ERROR);
-		if (get_componants(data, i) == ERROR)
-			return (ERROR);
-		i++;
+		off = ws_count(data->map[i]);
+		idx = ft_colorcmp(&data->map[i][off]);
+		if (idx != ERROR)
+        {
+			off += ws_count(&data->map[i][off]);
+			if (color_check(&data->map[i][off + 2]) == ERROR || get_componants(data, count) == ERROR)
+				return (ERROR);
+			count++;
+			i = 0;
+        }
+		else
+			i++;
 	}
+	if (count < 2)
+		return (ERROR);
 	return (TRUE);	
 }
 
@@ -253,11 +305,9 @@ int parse_map(int map_fd, t_data *data)
 	get_raw_map(map_fd, data);
 	if (get_texture_paths(data) == ERROR)
 		return (ERROR);
-	data->map = del_nfirst(4, data->map);
 	data->map = del_blank(data->map);
 	if (get_colors(data) == ERROR)
 		return (ERROR);
-	data->map = del_nfirst(2, data->map);
 	data->map = del_blank(data->map);
 	data->map = fill_blank(data->map);
 	if (check_closed(data) == ERROR)

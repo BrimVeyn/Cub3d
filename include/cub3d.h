@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:27:44 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/03 16:05:37 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:30:54 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@
 #include "../libftprintf/header/ft_printf.h"
 #include "../source/minilibx/mlx.h"
 #include "../source/minilibx/mlx_int.h"
+
+enum
+{
+	DIR_NO,
+	DIR_SO,
+	DIR_WE,
+	DIR_EA,
+};
+
+enum
+{
+	C_F,
+	C_C,
+};
 
 
 //--------------------STRUCT-----------------------
