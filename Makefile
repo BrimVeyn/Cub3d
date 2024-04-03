@@ -1,18 +1,23 @@
-NAME			:= minishell
+NAME			:= cub3d
 
 LIBFT			:= libftprintf/libftprintf.a
 CC 				:= cc
-LDFLAGS			:= -lreadline -lncurses
 CFLAGS 			:= -Wall -Werror -Wextra
-SRC 			:= source/main.c
+
+SRC 			:= source/main.c \
+				   source/parsing/utils.c
 
 GCL				:= git clone
-MINILIBX_SRC	:= https://github.com/42Paris/minilibx-linux.git source/minilibx
+MINILIBX_SRC	:= https://github.com/42Paris/minilibx-linux.git
+MINILIBX_PATH	:= source/minilibx
 MINILIBX		:= source/minilibx/libmlx_Linux.a
 
 OBJ 			:= $(SRC:source/%.c=objects/%.o)
 
+OBJDIR			:= objects
 PARSING_DIR		:= parsing
+
+MINIFLAGS		:= -lX11 -lXext -lm -Ofast $(MINILIBX)
 
 DEF_COLOR		:= \033[0;39m
 GRAY			:= \033[0;90m
@@ -26,10 +31,10 @@ WHITE			:= \033[0;97m
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJDIR) $(OBJ)
+$(NAME): $(MINILIBX) $(LIBFT) $(OBJDIR) $(OBJ)
 	@echo "$(GREEN)Making binary: $(NAME)"
 	@printf "$(MAGENTA)"
-	@$(CC) $(OBJ) $(LIBFT) $(CFLAGS) $(LDFLAGS) -o $(NAME)
+	@$(CC) $(OBJ) $(MINIFLAGS) $(LIBFT) $(CFLAGS) -o $(NAME)
 	@printf "Done !$(DEF_COLOR)\n"
 
 $(OBJDIR)/%.o: source/%.c
@@ -45,8 +50,12 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(MINILIBX_PATH)
 	@make --no-print-directory -C libftprintf/ fclean
 	@printf "$(RED)Binary deleted !$(DEF_COLOR)\n"
+
+$(MINILIBX):
+	@if [ ! -d $(MINILIBX_PATH) ]; then $(GCL) $(MINILIBX_SRC) $(MINILIBX_PATH); make -C $(MINILIBX_PATH); fi;
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR) $(OBJDIR)/$(PARSING_DIR)
