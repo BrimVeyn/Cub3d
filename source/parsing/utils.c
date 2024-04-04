@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:51:59 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/03 14:34:52 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:29:00 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,6 @@ int ft_reversecmp(char *str, char *cmp)
 	return (TRUE);
 }
 
-void free_data(t_data *data)
-{
-	free_tab(data->map);
-	free_tab(data->texture_paths);
-}
-
-void free_tab(char **tab)
-{	
-	int i;
-	
-	if (!tab)
-		return ;
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
 int check_map(char *map)
 {
 	int fd;
@@ -68,3 +47,22 @@ int display_error(char *error, t_data *data)
 	return (ERROR);
 }
 
+int	ft_isws(char c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (TRUE);
+	return (ERROR);
+}
+
+int int_len(int n)
+{
+	int i;
+
+	i = 0;
+	while (n)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}

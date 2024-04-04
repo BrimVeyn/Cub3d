@@ -8,6 +8,12 @@ SRC 			:= source/main.c \
 				   source/parsing/utils.c \
 				   source/parsing/utils_two.c \
 				   source/parsing/get_raw_map.c \
+				   source/parsing/check_order.c \
+				   source/parsing/other_checks.c \
+				   source/parsing/get_colors.c \
+				   source/parsing/tab_manip.c \
+				   source/parsing/get_texture_paths.c \
+				   source/parsing/free.c \
 
 GCL				:= git clone
 MINILIBX_SRC	:= https://github.com/42Paris/minilibx-linux.git

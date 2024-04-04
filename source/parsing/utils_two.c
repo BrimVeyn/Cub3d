@@ -6,33 +6,11 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:46:15 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/03 17:18:22 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:36:33 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-char **del_nfirst(int n, char **map)
-{
-	char **new_map;
-	int i;
-	int j;
-	int old_map_len;
-
-	i = 0;
-	j = n;
-	old_map_len = ft_tablen(map);
-	new_map = ft_calloc(old_map_len - n + 1, sizeof(char *));
-	while (i < old_map_len - n)
-	{
-		new_map[i] = ft_strdup(map[j]);
-		i++;
-		j++;
-	}
-	free_tab(map);
-	return (new_map);
-	
-}
 
 int is_ws(char *str)
 {
@@ -58,28 +36,14 @@ int count_blank(char **map)
 	return (i);
 }
 
-char **del_blank(char **map)
+int ws_count(char *str)
 {
-	char **new_map;
 	int i;
-	int j;
-	int n;
-	int old_map_len;
 
-	n = count_blank(map);
 	i = 0;
-	j = n;
-	old_map_len = ft_tablen(map);
-	new_map = ft_calloc(old_map_len - n + 1, sizeof(char *));
-	while (i < old_map_len - n)
-	{
-		new_map[i] = ft_strdup(map[j]);
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-		j++;
-	}
-	free_tab(map);
-	return (new_map);
-	
+	return (i);
 }
 
 int	ft_tablen(char **tab)
@@ -92,4 +56,24 @@ int	ft_tablen(char **tab)
 	while (tab[i])
 		i++;
 	return (i);
+}
+
+int get_llength(char **map)
+{
+	int i;
+	int j;
+	int count;
+	
+	i = 0;
+	count = 0;
+	while (map[i])
+	{
+		j = 0;
+		while(map[i][j])
+			j++;
+		if (j > count)
+			count = j;
+		i++;
+	}
+	return (count);
 }
