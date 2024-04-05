@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 08:28:41 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/05 15:04:21 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:24:07 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ void ray_cast(t_data *data)
 		if (drawend >= HEIGHT)
 			drawend = HEIGHT - 1;
 
-		int color = data->colors[1];
+		int color = data->colors[0];
 		
 		if (side == 1)
 			color = color / 2;
@@ -307,10 +307,48 @@ int ray_loop(void *param)
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
 	// printf("NEW dirx = %f\n", data->player->dirx);
 	// printf("NEW diry = %f\n\n", data->player->diry);
-	usleep(50000);
+	usleep(25000);
 	return (TRUE);
 }
 
+
+int *xpm_to_tab(t_data *data, int idx)
+{
+	t_img_data tmp;
+	int		*buffer;
+	int x;
+	int y;
+
+	tmp.img = mlx_xpm_file_to_image(data->mlx, data->texture_paths[idx], &data->tex_size, &data->tex_size);
+	tmp.addr_int = (int *)mlx_get_data_addr(tmp.img, &tmp.bpp, &tmp.line_lengh, &tmp.endian);
+	buffer = ft_calloc(1, sizeof * buffer * data->tex_size * data->tex_size);
+	if (!buffer)
+		display_error("Error\n", data);
+	y = 0;
+	while (y < data->tex_size)
+	{
+		x = 0;
+		while (x < data->tex_size)
+		{
+			buffer[y * data->tex_size + x] = tmp.addr_int[y * data->tex_size + x];
+			++x;
+		}
+		y++;
+	}
+	mlx_destroy_image(data->mlx, tmp.img);
+	return (buffer);
+}
+
+void init_imgs(t_data *data)
+{
+    data->textures = ft_calloc(5, sizeof(int *));
+    if (!data->textures)
+        display_error("Error\n", data);
+    data->textures[NORTH] = xpm_to_tab(data, NORTH);
+    data->textures[SOUTH] = xpm_to_tab(data, SOUTH);
+    data->textures[EAST] = xpm_to_tab(data, EAST);
+    data->textures[WEST] = xpm_to_tab(data, WEST);
+}
 
 void	run_map(t_data *data)
 {
@@ -322,6 +360,9 @@ void	run_map(t_data *data)
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "CUB3D");
 	data->imgs->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->imgs->addr = mlx_get_data_addr(data->imgs->img, &data->imgs->bpp, &data->imgs->line_lengh, &data->imgs->endian);
+	
+	init_imgs(data);
+
 	mlx_key_hook(data->window, ft_hook, (void *)data);
 	mlx_hook(data->window, 17, 0, close_window, data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, key_handler, data);
