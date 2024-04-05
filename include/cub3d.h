@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:27:44 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/05 15:11:51 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:19:43 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ enum
 	DIR_SO,
 	DIR_WE,
 	DIR_EA,
+};
+
+enum
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
 };
 
 enum
@@ -79,6 +87,7 @@ typedef struct s_img_data
 {
 	void			*img;
 	void			*addr;
+	int				*addr_int;
 	int				bpp;
 	int				line_lengh;
 	int				endian;
@@ -132,15 +141,17 @@ typedef struct	s_ray
 typedef struct s_data
 {
 
-	char	**map;
-	char	**texture_paths;
-	size_t	colors[2];
+	char		**map;
+	char		**texture_paths;
+	int		**textures;
+	int			tex_size;
+	size_t		colors[2];
 	void		*mlx;
 	void		*window;
 	t_img_data	*imgs;
 	t_player	*player;
 	t_ray		*ray;
-	t_line	line;
+	t_line		line;
 
 }				t_data;
 

@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 10:45:32 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/05 14:16:24 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:56:58 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void close_and_exit(t_data *data)
 	free(data->mlx);
 	free(data->imgs);
 	free(data->player);
+	free(data->ray);
 	free_data(data);
 	exit(EXIT_SUCCESS);
 }
