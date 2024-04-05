@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:23:21 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/04 12:25:54 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:55:35 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int ft_isnumws(char *str)
 			ws++;
 		i++;
 	}
-	if ((num != 0 && ws != 0) && (num + ws) == ft_strlen(str))
+	if (num != 0 && (num + ws) == ft_strlen(str))
 		return (TRUE);
 	return (FALSE);
 }

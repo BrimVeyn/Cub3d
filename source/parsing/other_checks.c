@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:35:13 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/04 12:35:34 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/05 10:44:34 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ int ft_isdir(char c)
 }
 
 
+int wrong_char(char c)
+{
+	if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '1' && c != '2' && c != '0')
+		return (ERROR);
+	return (TRUE);
+}
+
 int check_closed(t_data *data)
 {
 	int i;
@@ -46,6 +53,8 @@ int check_closed(t_data *data)
 		j = 0;
 		while (data->map[i][j])
 		{
+			if (wrong_char(data->map[i][j]) == ERROR)
+				return (ERROR);
 			if (data->map[i][j] == '0' || ft_isdir(data->map[i][j]) == TRUE)
 				if (check_all_direction(data->map, i, j) == ERROR)
 					return (ERROR);
@@ -71,6 +80,10 @@ int	check_onedir(t_data *data)
 		{
 			if (ft_isdir(data->map[i][j]) == TRUE)
 				count++;
+			if (data->map[i][j] != '0' && data->map[i][j] != '1'
+				&& data->map[i][j] != 'N' && data->map[i][j] != 'S'
+				&& data->map[i][j] != 'E' && data->map[i][j] != 'W' && data->map[i][j] != ' ')
+					return (ERROR);
 			j++;
 		}
 		i++;

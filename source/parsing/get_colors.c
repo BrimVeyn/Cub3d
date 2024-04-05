@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:29:34 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/04 12:31:43 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:07:00 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,20 @@ int ft_colorcmp(char c)
 int color_check(char *str)
 {
 	int i;
+	int coma;
 
 	i = 0;
+	coma = 0;
 	while (str[i])
 	{
 		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == ',' || ft_isws(str[i]) == TRUE))
 			return (ERROR);
+		if (str[i] == ',')
+			coma++;
 		i++;
 	}
+	if (coma != 2)
+		return (ERROR);
 	return (TRUE);
 }
 

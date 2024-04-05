@@ -1,49 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 12:25:16 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/05 11:01:55 by bvan-pae         ###   ########.fr       */
+/*   Created: 2024/04/04 16:17:53 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/05 11:03:15 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void free_texture(char **texture)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	int i;
+	char	*dst;
 
-	if (!texture)
-		return ;
-	i = 0;
-	while (i < 4)
+	if (x < WIDTH && y < HEIGHT && y > 0 && x > 0)
 	{
-		free(texture[i]);
-		i++;
+		dst = data->imgs->addr + (y * data->imgs->line_lengh + x * (data->imgs->bpp / 8));
+		*(unsigned int *)dst = color;
 	}
-	free(texture);
-}
-
-void free_tab(char **tab)
-{	
-	int i;
-	
-	if (!tab)
-		return ;
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-void free_data(t_data *data)
-{
-	free_tab(data->map);
-	free_texture(data->texture_paths);
 }
