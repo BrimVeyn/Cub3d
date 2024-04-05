@@ -14,6 +14,8 @@ SRC 			:= source/main.c \
 				   source/parsing/tab_manip.c \
 				   source/parsing/get_texture_paths.c \
 				   source/parsing/free.c \
+				   source/run/draw.c \
+				   source/run/hooks.c \
 
 GCL				:= git clone
 MINILIBX_SRC	:= https://github.com/42Paris/minilibx-linux.git
@@ -24,6 +26,7 @@ OBJ 			:= $(SRC:source/%.c=objects/%.o)
 
 OBJDIR			:= objects
 PARSING_DIR		:= parsing
+RUN_DIR			:= run
 
 MINIFLAGS		:= -lX11 -lXext -lm -Ofast $(MINILIBX)
 
@@ -66,7 +69,7 @@ $(MINILIBX):
 	@if [ ! -d $(MINILIBX_PATH) ]; then $(GCL) $(MINILIBX_SRC) $(MINILIBX_PATH); make -C $(MINILIBX_PATH); fi;
 
 $(OBJDIR):
-	@mkdir -p $(OBJDIR) $(OBJDIR)/$(PARSING_DIR)
+	@mkdir -p $(OBJDIR) $(OBJDIR)/$(PARSING_DIR) $(OBJDIR)/$(RUN_DIR)
 
 $(LIBFT):
 	@make --no-print-directory -C libftprintf/
