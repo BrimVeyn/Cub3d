@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 08:28:41 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/05 16:24:07 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:03:46 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,6 +294,118 @@ void reset_screen(t_data *data)
 }
 
 
+int get_map_width(t_data *data)
+{
+	int  i;
+
+	i = 0;
+	while (data->map[0][i])
+		i++;
+	return (i);
+}
+
+int get_map_height(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while(data->map[i])
+		i++;
+	return (i);
+}
+
+
+void render_minimap(t_data *data)
+{
+	t_minimap *minimap = data->minimap;
+	int offset_x;
+	int offset_y;
+	int cell_size = 15;
+	int size = 9 * cell_size;
+	int minimap_colors[4] = {0x221712, 0x930000, 0x6d00fe, 0x19d043};
+	int i;
+	int j;
+
+	offset_x = 40;
+	offset_y = 40;
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if (minimap->coord_matrix[i][j] == 0 && minimap->circle_matrix[i][j] == 1)
+				my_mlx_pixel_put(data, offset_x + j, offset_y + i, minimap_colors[0]);
+			else if (minimap->coord_matrix[i][j] == 1 && minimap->circle_matrix[i][j] == 1)
+				my_mlx_pixel_put(data, offset_x + j, offset_y + i, minimap_colors[1]);
+			else if (minimap->coord_matrix[i][j] == -1 && minimap->circle_matrix[i][j] == 1)
+				my_mlx_pixel_put(data, offset_x + j, offset_y + i, minimap_colors[2]);
+			else if (minimap->coord_matrix[i][j] == 30 && minimap->circle_matrix[i][j] == 1)
+				my_mlx_pixel_put(data, offset_x + j, offset_y + i, minimap_colors[3]);
+			j++;
+		}
+		i++;
+	}
+	return ;
+}
+
+
+void display_minimap(t_data *data)
+{
+	t_player *p;
+	t_minimap *m;
+
+	char **map = data->map;
+	int area = 8;
+
+	p = data->player;
+	m = data->minimap;
+
+	int i = 0;
+	int j;
+	int curr_pos_y;
+	int curr_pos_x;
+	int map_width = get_map_width(data);
+	int map_height = get_map_height(data);
+
+	while (i < m->minimap_size * m->minimap_scale)
+	{
+		j = 0;
+		curr_pos_x = (int) p->posx + (i / m->minimap_scale - area / 2 + 1) - 1;
+		if (curr_pos_x < 0 || curr_pos_x > map_height)
+		{
+			while (j < m->minimap_size * m->minimap_scale)
+				m->coord_matrix[i][j++] = -1;
+		}
+		else
+		{
+			while (j < m->minimap_size * m->minimap_scale)
+			{
+				curr_pos_y = (int) p->posy + (j / m->minimap_scale - area / 2);
+				if (curr_pos_y >= map_width || curr_pos_y < 0 || map[curr_pos_x][curr_pos_y] == '2')
+					m->coord_matrix[i][j] = -1;
+				else
+					m->coord_matrix[i][j] = map[curr_pos_x][curr_pos_y] - 48;
+				j++;
+			}
+		}
+		i++;
+	}
+	// for (int i = 0; i < area + 1; i++)
+	// {
+	// 	for (int j = 0; j < area + 1; j++)
+	// 		printf("[% d]", minimap[i][j]);
+	// 	printf("\n");
+	// }
+
+	render_minimap(data);
+	// exit(0);
+
+	return ;
+}
+
+
+
 int ray_loop(void *param)
 {
 	t_data *data;
@@ -304,10 +416,12 @@ int ray_loop(void *param)
 	reset_screen(data);
 	init_ray(data);
 	ray_cast(data);
+	display_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
 	// printf("NEW dirx = %f\n", data->player->dirx);
 	// printf("NEW diry = %f\n\n", data->player->diry);
 	usleep(25000);
+	// s12eep(5);
 	return (TRUE);
 }
 
@@ -320,6 +434,8 @@ int *xpm_to_tab(t_data *data, int idx)
 	int y;
 
 	tmp.img = mlx_xpm_file_to_image(data->mlx, data->texture_paths[idx], &data->tex_size, &data->tex_size);
+	if (!tmp.img)
+		display_error("Error, couldn't load texture.\n", data);
 	tmp.addr_int = (int *)mlx_get_data_addr(tmp.img, &tmp.bpp, &tmp.line_lengh, &tmp.endian);
 	buffer = ft_calloc(1, sizeof * buffer * data->tex_size * data->tex_size);
 	if (!buffer)
@@ -350,12 +466,77 @@ void init_imgs(t_data *data)
     data->textures[WEST] = xpm_to_tab(data, WEST);
 }
 
+
+void fill_circle_matrix(t_data *data)
+{
+	t_minimap *m;
+	int			x;
+	int			y;
+
+	m = data->minimap;
+	x = 0;
+	while (x < m->draw_size)
+	{
+		y = 0;
+		while (y < m->draw_size)
+		{
+			if (m->circle_matrix[x][y] == 1 && m->circle_matrix[x][y + 1] == 0 && x != 1 && x != m->draw_size -2)
+			{
+				y++;
+				while (m->circle_matrix[x][y] == 0)
+				{
+					m->circle_matrix[x][y] = 1;
+					y++;
+				}
+				break;
+			}
+			y++;
+		}
+		x++;
+	}
+}
+
+
+
+void init_minimap_circle(t_data *data)
+{
+	t_minimap *m;
+	int			idx;
+
+	m = data->minimap;
+	m->minimap_scale = MINIMAP_SCALE;
+	m->minimap_size = MINIMAP_SIZE;
+	m->draw_size = MINIMAP_SCALE * MINIMAP_SIZE;
+	m->center_x = m->draw_size / 2;
+	m->center_y = m->draw_size / 2;
+	m->circle_matrix = ft_calloc(m->minimap_size * m->minimap_scale + 1, sizeof(int *));
+	m->coord_matrix = ft_calloc(m->minimap_size * m->minimap_scale + 1, sizeof(int *));
+	idx = 0;
+	while (idx < m->minimap_scale * m->minimap_size)
+    {
+		m->circle_matrix[idx] = ft_calloc(m->minimap_scale * m->minimap_size + 1, sizeof(int));
+		m->coord_matrix[idx++] = ft_calloc(m->minimap_scale * m->minimap_size + 1, sizeof(int));
+    }
+	draw_circle_matrix(data);
+	fill_circle_matrix(data);
+	for(int i = 0; i < m->draw_size; i++)
+	{
+		for(int k = 0; k < m->draw_size; k++)
+			printf("[%d]", m->circle_matrix[i][k]);
+		printf("\n");
+	}
+}
+
+
+
 void	run_map(t_data *data)
 {
 	data->imgs = ft_calloc(2, sizeof(t_img_data));
 	data->ray = ft_calloc(2, sizeof(t_ray));
 	data->player = ft_calloc(2, sizeof(t_player));
+	data->minimap = ft_calloc(2, sizeof(t_minimap));
 	init_data(data);
+	init_minimap_circle(data);
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "CUB3D");
 	data->imgs->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);

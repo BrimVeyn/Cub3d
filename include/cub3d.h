@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:27:44 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/05 16:19:43 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:03:22 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define ROTSPEED 0.09
 # define MOVESPEED 0.15
+# define MINIMAP_SIZE 9
+# define MINIMAP_SCALE 15
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -82,6 +84,24 @@ enum
 };
 
 //--------------------STRUCT-----------------------
+
+
+typedef struct s_minimap
+{
+	int			**coord_matrix;
+	int			**circle_matrix;
+	int			minimap_scale;
+	int			minimap_size;
+	int			draw_size;
+	int			circle_radius;
+	int			center_x;
+	int			center_y;
+
+
+
+
+}				t_minimap;
+
 
 typedef struct s_img_data
 {
@@ -143,7 +163,7 @@ typedef struct s_data
 
 	char		**map;
 	char		**texture_paths;
-	int		**textures;
+	int			**textures;
 	int			tex_size;
 	size_t		colors[2];
 	void		*mlx;
@@ -151,6 +171,7 @@ typedef struct s_data
 	t_img_data	*imgs;
 	t_player	*player;
 	t_ray		*ray;
+	t_minimap	*minimap;	
 	t_line		line;
 
 }				t_data;
@@ -202,6 +223,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		ft_hook(int keycode, void *param);
 int	close_window(t_data *data);
 int key_handler(int key, t_data *data);
+void draw_circle_matrix(t_data *data);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:51:59 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/04 12:29:00 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:43:33 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int display_error(char *error, t_data *data)
 {
 	fd_printf(2, "%fs", error);
 	free_data(data);
+	exit(EXIT_FAILURE);
 	return (ERROR);
 }
 

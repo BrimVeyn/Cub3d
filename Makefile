@@ -16,6 +16,7 @@ SRC 			:= source/main.c \
 				   source/parsing/free.c \
 				   source/run/draw.c \
 				   source/run/hooks.c \
+				   source/run/minimap.c \
 
 GCL				:= git clone
 MINILIBX_SRC	:= https://github.com/42Paris/minilibx-linux.git
