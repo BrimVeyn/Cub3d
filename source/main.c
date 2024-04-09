@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:00:48 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/09 10:04:00 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:56:13 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,12 +317,91 @@ int get_map_height(t_data *data)
 }
 
 
+void	paint_minimap(t_data *data)
+{
+	t_minimap *m;
+	int offset_x;
+	int offset_y;
+	int minimap_colors[5] = {0x221712, 0x930000, 0x6d00fe, 0x19d043, 0xFFFFFF};
+	////////////////////////  4			8			16			32		64
+	///////////////////////   0			1			-1			30		c2
+	int i;
+	int j;
+
+	offset_x = 40;
+	offset_y = 40;
+	m = data->minimap;
+	i = 0;
+	while (i < m->draw_size)
+	{
+		j = 0;
+		while (j < m->draw_size)
+		{
+			if (m->rotated_matrix[i][j] == 4)
+				my_mlx_pixel_put(data, i + offset_x, j + offset_y, minimap_colors[0]);
+			else if (m->rotated_matrix[i][j] == 8)
+				my_mlx_pixel_put(data, i + offset_x, j + offset_y, minimap_colors[1]);
+			else if (m->rotated_matrix[i][j] == 16)
+				my_mlx_pixel_put(data, i + offset_x, j + offset_y, minimap_colors[2]);
+			else if (m->rotated_matrix[i][j] == 32)
+				my_mlx_pixel_put(data, i + offset_x, j + offset_y, minimap_colors[3]);
+			else if (m->rotated_matrix[i][j] == 64)
+				my_mlx_pixel_put(data, i + offset_x, j + offset_y, minimap_colors[4]);
+			j++;
+		}
+		i++;
+	}
+}
+
+
+
+
+void circle_matrix_rotation(t_data *data, double angle)
+{
+	t_minimap *m = data->minimap;
+	double sin_theta = sin(angle);
+	double cos_theta = cos(angle);
+	int x = 0;
+	int y;
+
+	while (x < m->draw_size)
+	{
+		y = 0;
+		while (y < m->draw_size)
+		{
+			if (m->circle_matrix[x][y] != 0)
+			{
+				int new_x = ((x - m->center_x) * cos_theta) - ((y - m->center_y) * sin_theta) + m->center_x;
+				int new_y = ((x - m->center_x) * sin_theta) + ((y - m->center_y) * cos_theta) + m->center_y;
+				// printf("x = %d, y = %d\n", new_x, new_y);
+				m->rotated_matrix[new_x][new_y] = m->filled_circle_matrix[x][y]; 
+			}
+			else
+				m->rotated_matrix[x][y] = 0;
+			y++;
+		}
+		x++;
+	}
+	// for(int i = 0; i < m->draw_size; i++)
+	// {
+	// 	for(int k = 0; k < m->draw_size; k++)
+	// 		printf("[%d]", m->rotated_matrix[i][k]);
+	// 	printf("\n");
+	// }
+	paint_minimap(data);
+	// exit(0);
+
+}
+
+
 void render_minimap(t_data *data)
 {
 	t_minimap *minimap = data->minimap;
 	int offset_x;
 	int offset_y;
-	int minimap_colors[4] = {0x221712, 0x930000, 0x6d00fe, 0x19d043};
+	// int minimap_colors[5] = {0x221712, 0x930000, 0x6d00fe, 0x19d043, 0xFFFFFF};
+	////////////////////////  4			8			16			32		64
+	///////////////////////   0			1			-1			30		c2
 	int i;
 	int j;
 
@@ -335,17 +414,42 @@ void render_minimap(t_data *data)
 		while (j < minimap->draw_size)
 		{
 			if (minimap->coord_matrix[i][j] == 0 && minimap->circle_matrix[i][j] == 1)
-				my_mlx_pixel_put(data, offset_x + j, offset_y + i, minimap_colors[0]);
+            {
+				// minimap->circle_matrix[i][j] = 4; 
+				minimap->filled_circle_matrix[i][j] = 4;
+            }
 			else if (minimap->coord_matrix[i][j] == 1 && minimap->circle_matrix[i][j] == 1)
-				my_mlx_pixel_put(data, offset_x + j, offset_y + i, minimap_colors[1]);
+            {
+				// minimap->circle_matrix[i][j] = 8;
+				minimap->filled_circle_matrix[i][j] = 8;
+            }
 			else if (minimap->coord_matrix[i][j] == -1 && minimap->circle_matrix[i][j] == 1)
-				my_mlx_pixel_put(data, offset_x + j, offset_y + i, minimap_colors[2]);
+            {
+				// minimap->circle_matrix[i][j] = 16;
+				minimap->filled_circle_matrix[i][j] = 16;
+            }
 			else if (minimap->coord_matrix[i][j] == 30 && minimap->circle_matrix[i][j] == 1)
-				my_mlx_pixel_put(data, offset_x + j, offset_y + i, minimap_colors[3]);
+            {
+				// minimap->circle_matrix[i][j] = 32;
+				minimap->filled_circle_matrix[i][j] = 32;
+            }
+			else if (minimap->circle_matrix[i][j] == 2)
+				minimap->filled_circle_matrix[i][j] = 64;
+			else
+				minimap->filled_circle_matrix[i][j] = 16;
 			j++;
 		}
 		i++;
 	}
+	double angle = -atan2(data->player->dirx, data->player->diry) + M_PI;
+	for(int i = 0; i < minimap->draw_size; i++)
+	{
+		for(int k = 0; k < minimap->draw_size; k++)
+			printf("[%d]", minimap->coord_matrix[i][k]);
+		printf("\n");
+	}
+	printf("\n\n\n\n\n\n\n");
+	circle_matrix_rotation(data, angle);
 	return ;
 }
 
@@ -356,7 +460,7 @@ void display_minimap(t_data *data)
 	t_minimap *m;
 
 	char **map = data->map;
-	int area = 8;
+	int area = data->minimap->minimap_size - 1;
 
 	p = data->player;
 	m = data->minimap;
@@ -371,7 +475,7 @@ void display_minimap(t_data *data)
 	while (i < m->draw_size)
 	{
 		j = 0;
-		curr_pos_x = (int) p->posx + (i / m->minimap_scale - area / 2 + 1) - 1;
+		curr_pos_x = (int) p->posx + (((m->draw_size - i) / m->minimap_scale) - (area / 2));
 		if (curr_pos_x < 0 || curr_pos_x > map_height - 1)
 		{
 			while (j < m->minimap_size * m->minimap_scale)
@@ -381,9 +485,13 @@ void display_minimap(t_data *data)
 		{
 			while (j < m->draw_size)
 			{
-				curr_pos_y = (int) p->posy + (j / m->minimap_scale - area / 2);
-				if (curr_pos_y > map_width - 1 || curr_pos_y < 0 || map[curr_pos_x][curr_pos_y] == '2')
+				curr_pos_y = (int) p->posy + ((j / m->minimap_scale) - (area / 2));
+				if (curr_pos_y > map_width - 2 || curr_pos_y < 0 || map[curr_pos_x][curr_pos_y] == '2')
 					m->coord_matrix[i][j] = -1;
+				if ((map[curr_pos_x][curr_pos_y] == 'N' || map[curr_pos_x][curr_pos_y] == 'S' || map[curr_pos_x][curr_pos_y] == 'W' || map[curr_pos_x][curr_pos_y] == 'E') && ((int) p->posx != curr_pos_x || (int) p->posy != curr_pos_y))
+					m->coord_matrix[i][j] = 0;
+				else if ((int) p->posx == curr_pos_x && (int) p->posy == curr_pos_y)
+					m->coord_matrix[i][j] = 30;
 				else
 					m->coord_matrix[i][j] = map[curr_pos_x][curr_pos_y] - 48;
 				j++;
@@ -391,17 +499,14 @@ void display_minimap(t_data *data)
 		}
 		i++;
 	}
-	// for (int i = 0; i < area + 1; i++)
+
+	// for(int i = 0; i < m->draw_size; i++)
 	// {
-	// 	for (int j = 0; j < area + 1; j++)
-	// 		printf("[% d]", minimap[i][j]);
+	// 	for(int k = 0; k < m->draw_size; k++)
+	// 		printf("[%d]", m->coord_matrix[i][k]);
 	// 	printf("\n");
 	// }
-
 	render_minimap(data);
-	// exit(0);
-
-	return ;
 }
 
 
@@ -420,7 +525,7 @@ int ray_loop(void *param)
 	draw_crosshair(data, 0xFFFFFF, 5);
 	draw_crosshair(data, 0xFFFFFF, 4);
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
-	usleep(25000);
+	usleep(12500);
 	return (TRUE);
 }
 
@@ -479,7 +584,7 @@ void fill_circle_matrix(t_data *data)
 		y = 0;
 		while (y < m->draw_size)
 		{
-			if (m->circle_matrix[x][y] == 1 && m->circle_matrix[x][y + 1] == 0 && x != 1 && x != m->draw_size -2)
+			if (m->circle_matrix[x][y] == 1 && m->circle_matrix[x][y + 1] == 0 && y < m->draw_size / 2)
 			{
 				y++;
 				while (m->circle_matrix[x][y] == 0)
@@ -496,6 +601,45 @@ void fill_circle_matrix(t_data *data)
 }
 
 
+void add_circle_border(t_data *data)
+{
+	t_minimap *m;
+	int x;
+	int y;
+
+	m = data->minimap;
+	x = 0;
+	while (x < m->draw_size)
+	{
+		y = 0;
+		while (y < m->draw_size - 1)
+		{
+			if (m->circle_matrix[x][y] == 1)
+			{
+				if (x - 1 > 0 && m->circle_matrix[x - 1][y] == 0)
+					m->circle_matrix[x - 1][y] = 2;
+				if (x - 2 > 0 && m->circle_matrix[x - 2][y] == 0)
+					m->circle_matrix[x - 2][y] = 2;
+				if (y - 1 > 0 && m->circle_matrix[x][y - 1] == 0)
+					m->circle_matrix[x][y - 1] = 2;
+				if (y - 2 > 0 && m->circle_matrix[x][y - 2] == 0)
+					m->circle_matrix[x][y - 2] = 2;
+				if (y + 1 < m->draw_size - 1 && m->circle_matrix[x][y + 1] == 0)
+					m->circle_matrix[x][y + 1] = 2;
+				if (y + 1 < m->draw_size - 1 && m->circle_matrix[x][y + 2] == 0)
+					m->circle_matrix[x][y + 2] = 2;
+				if (x + 1 > m->draw_size / 2 && m->circle_matrix[x + 1][y] == 0)
+					m->circle_matrix[x + 1][y] = 2;
+				if (x + 2 > m->draw_size / 2 && m->circle_matrix[x + 2][y] == 0)
+					m->circle_matrix[x + 2][y] = 2;
+			}
+			y++;
+		}
+		x++;
+	}
+	return ;
+}
+
 
 void init_minimap_circle(t_data *data)
 {
@@ -510,20 +654,20 @@ void init_minimap_circle(t_data *data)
 	m->center_y = m->draw_size / 2;
 	m->circle_matrix = ft_calloc(m->minimap_size * m->minimap_scale + 1, sizeof(int *));
 	m->coord_matrix = ft_calloc(m->minimap_size * m->minimap_scale + 1, sizeof(int *));
+	m->rotated_matrix = ft_calloc(m->minimap_size * m->minimap_scale + 1, sizeof(int *));
+	m->filled_circle_matrix = ft_calloc(m->minimap_size * m->minimap_scale + 1, sizeof(int *));
 	idx = 0;
 	while (idx < m->minimap_scale * m->minimap_size)
     {
 		m->circle_matrix[idx] = ft_calloc(m->minimap_scale * m->minimap_size + 1, sizeof(int));
+		m->rotated_matrix[idx] = ft_calloc(m->minimap_scale * m->minimap_size + 1, sizeof(int));
+		m->filled_circle_matrix[idx] = ft_calloc(m->minimap_scale * m->minimap_size + 1, sizeof(int));
 		m->coord_matrix[idx++] = ft_calloc(m->minimap_scale * m->minimap_size + 1, sizeof(int));
     }
 	draw_circle_matrix(data);
 	fill_circle_matrix(data);
-	for(int i = 0; i < m->draw_size; i++)
-	{
-		for(int k = 0; k < m->draw_size; k++)
-			printf("[%d]", m->circle_matrix[i][k]);
-		printf("\n");
-	}
+	add_circle_border(data);
+
 }
 
 

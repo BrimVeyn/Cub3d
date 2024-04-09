@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:18:21 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/08 16:53:39 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:35:55 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void draw_circle_matrix(t_data *data) {
 	t_minimap *m;
 
 	m = data->minimap;
-    int x = m->draw_size / 2 - 1;
+    int x = (m->draw_size / 2) - 5;
     int y = 0;
     int dx = 1;
     int dy = 1;

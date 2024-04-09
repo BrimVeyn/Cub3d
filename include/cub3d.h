@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:00:28 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/09 10:00:36 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:50:24 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define ROTSPEED 0.09
 # define MOVESPEED 0.15
 # define MINIMAP_SIZE 9
-# define MINIMAP_SCALE 15
+# define MINIMAP_SCALE 20
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -91,6 +91,8 @@ typedef struct s_minimap
 {
 	int			**coord_matrix;
 	int			**circle_matrix;
+	int			**filled_circle_matrix;
+	int			**rotated_matrix;
 	int			minimap_scale;
 	int			minimap_size;
 	int			draw_size;
