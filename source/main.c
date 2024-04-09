@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:00:48 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/09 10:04:00 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:50:29 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <X11/X.h>
 
 void draw_crosshair(t_data *data, int color, int r);
+void animation(t_animation *walk);
 
 void display(char **map)
 {
@@ -195,20 +196,30 @@ void ray_cast(t_data *data)
 
 		int lineheight = (int)(HEIGHT / ray->perpwalldist);
 
-		int drawstart = -lineheight / 2 + HEIGHT / 2;
+		int drawstart = (-lineheight / 2 + HEIGHT / 2) + data->walk_animation.offset;
 		if (drawstart < 0)
 			drawstart = 0;
-		int drawend = lineheight / 2 + HEIGHT / 2;
+		int drawend = (lineheight / 2 + HEIGHT / 2) + data->walk_animation.offset;
 		if (drawend >= HEIGHT)
 			drawend = HEIGHT - 1;
+		int drawceilingstart = 0;
+		int drawceilingend = drawstart;
+		int drawfloorstart = drawend;
+		int drawfloorend = HEIGHT;
 
 		int color = data->colors[0];
+		int floorcolor = 0xFAF3DD;
+		int ceilingcolor = 0xAED9E0;
 		
 		if (side == 1)
 			color = color / 2;
 		
 		for (int i = drawstart; i < drawend; i++)
 			my_mlx_pixel_put(data, x, i, color);
+		for (int i = drawfloorstart; i < drawfloorend; i++)
+			my_mlx_pixel_put(data, x, i, floorcolor);
+		for (int i = drawceilingstart; i < drawceilingend; i++)
+			my_mlx_pixel_put(data, x, i, ceilingcolor);
 		x++;
 	}
 }
@@ -250,26 +261,26 @@ void player_pos_changed(t_data *data)
 	p = data->player;
 	if (p->has_moved_y == 1)
 	{
-		// p->has_moved_y = 0;
+		animation(&data->walk_animation);
 		p->posx = p->posx + p->dirx * MOVESPEED;
 		p->posy = p->posy + p->diry * MOVESPEED;
 	}
 	if (p->has_moved_y == -1)
 	{
-		// p->has_moved_y = 0;
+		animation(&data->walk_animation);
 		p->posx = p->posx - p->dirx * MOVESPEED;
 		p->posy = p->posy - p->diry * MOVESPEED;
 
 	}
 	if (p->has_moved_x == 1)
 	{
-		// p->has_moved_x = 0;
+		animation(&data->walk_animation);
 		p->posx = p->posx + p->diry * MOVESPEED;
 		p->posy = p->posy - p->dirx * MOVESPEED;
 	}
 	if (p->has_moved_x == -1)
 	{
-		// p->has_moved_x = 0;
+		animation(&data->walk_animation);
 		p->posx = p->posx - p->diry * MOVESPEED;
 		p->posy = p->posy + p->dirx * MOVESPEED;
 	}
@@ -349,7 +360,6 @@ void render_minimap(t_data *data)
 	return ;
 }
 
-
 void display_minimap(t_data *data)
 {
 	t_player *p;
@@ -404,26 +414,37 @@ void display_minimap(t_data *data)
 	return ;
 }
 
+#include <sys/time.h>
 
+int	get_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		printf(" Error getting time ");
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
 
 int ray_loop(void *param)
 {
 	t_data *data;
-
+	
 	data = (t_data *) param;
 	view_changed(data);
 	player_pos_changed(data);
 	reset_screen(data);
 	init_ray(data);
 	ray_cast(data);
+	// if (BONUS == 1)
 	display_minimap(data);
 	draw_crosshair(data, 0xFFFFFF, 5);
 	draw_crosshair(data, 0xFFFFFF, 4);
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
-	usleep(25000);
+	mlx_set_font(data->mlx, data->window, "8x16");
+	mlx_string_put(data->mlx, data->window, 930, 20, 0xFFFFFF, ft_sprintf("fps: %d", (1000 / (get_time() - data->old_time))));
+	data->old_time = get_time();
 	return (TRUE);
 }
-
 
 int *xpm_to_tab(t_data *data, int idx)
 {
@@ -495,8 +516,6 @@ void fill_circle_matrix(t_data *data)
 	}
 }
 
-
-
 void init_minimap_circle(t_data *data)
 {
 	t_minimap *m;
@@ -525,8 +544,6 @@ void init_minimap_circle(t_data *data)
 		printf("\n");
 	}
 }
-
-
 
 int handle_mouse(int x, int y, t_data *data)
 {
@@ -566,8 +583,23 @@ void draw_crosshair(t_data *data, int color, int r) {
     }
 }
 
+void animation(t_animation *walk)
+{
+	if (walk->offset == 8)
+		walk->trigger_offset = 1;
+	if (walk->offset == -8)
+		walk->trigger_offset = 0;
+	if (walk->trigger_offset == 0)
+		walk->offset += 2;
+	else
+		walk->offset -= 2;
+	// printf("hello\n");
+}
+
 void	run_map(t_data *data)
 {
+	data->walk_animation.trigger_offset = 0;
+	data->walk_animation.offset = 0;
 	data->imgs = ft_calloc(2, sizeof(t_img_data));
 	data->ray = ft_calloc(2, sizeof(t_ray));
 	data->player = ft_calloc(2, sizeof(t_player));
@@ -589,13 +621,14 @@ void	run_map(t_data *data)
 	mlx_mouse_hide(data->mlx, data->window);
 	mlx_mouse_hook(data->window, handle_mouse, data);
 	mlx_hook(data->window, MotionNotify, PointerMotionMask, handle_mouse, data);
+	
 
 	mlx_loop_hook(data->mlx, &ray_loop, (void *)data);
+	// mlx_string_put(data->mlx, data->window, 100, 300, 0x00FF00, "salope");
 	// center_mouse_in_window(data->mlx, data->window);
 	mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 	mlx_loop(data->mlx);
 }
-
 
 int main(int ac, char **av)
 {
@@ -603,6 +636,7 @@ int main(int ac, char **av)
 	t_data	data;
 
 	ft_bzero((void *) &data, sizeof(t_data));
+	data.old_time = get_time();
 	if (ac != 2)
 		display_error("Cub3d: Usage: ./cub3d <path_to_map>\n", &data);
 	map_fd = check_map(av[1]);

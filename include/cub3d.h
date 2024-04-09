@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:00:28 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/09 10:00:36 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:47:34 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
 # define MOVESPEED 0.15
 # define MINIMAP_SIZE 9
 # define MINIMAP_SCALE 15
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
+
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -141,6 +146,11 @@ typedef struct s_player
 	double	posy;
 }				t_player;
 
+typedef struct	s_animation
+{
+	int	offset;
+	int trigger_offset;
+}				t_animation;
 
 typedef struct	s_ray
 {
@@ -174,7 +184,8 @@ typedef struct s_data
 	t_ray		*ray;
 	t_minimap	*minimap;	
 	t_line		line;
-
+	t_animation	walk_animation;
+	int			old_time;
 }				t_data;
 
 
