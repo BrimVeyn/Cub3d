@@ -3,6 +3,7 @@ NAME			:= cub3d
 LIBFT			:= libftprintf/libftprintf.a
 CC 				:= cc
 CFLAGS 			:= -Wall -Werror -Wextra -g3
+BONUS  			:= 
 
 SRC 			:= source/main.c \
 				   source/parsing/utils.c \
@@ -52,7 +53,7 @@ $(NAME): $(MINILIBX) $(LIBFT) $(OBJDIR) $(OBJ)
 $(OBJDIR)/%.o: source/%.c
 	@printf '$(YELLOW)Compiling : %-45s $(CYAN)-->	$(YELLOW)%-30s\n' "$<" "$@";
 	@printf "$(BLUE)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(BONUS) -c $< -o $@
 	@printf "$(DEF_COLOR)"
 
 clean:
@@ -77,4 +78,7 @@ $(LIBFT):
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+bonus:
+	@$(MAKE) BONUS_FLAGS="-D BONUS" $(NAME) --no-print-directory
+
+.PHONY: all clean fclean re bonus 
