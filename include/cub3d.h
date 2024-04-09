@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 09:27:44 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/08 17:03:22 by bvan-pae         ###   ########.fr       */
+/*   Created: 2024/04/09 10:00:28 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/09 10:00:36 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define WIDTH 1000
 # define HEIGHT 1000
 
+# define PI 3.14159265358979323846
 
 # define ROTSPEED 0.09
 # define MOVESPEED 0.15
@@ -192,7 +193,7 @@ char	**fill_blank(char **map);
 char	**ft_delindex(char **split, int i);
 int		ft_reversecmp(char *str, char *cmp);
 int		check_map(char *map);
-int		display_error(char *error, t_data *data);
+void	display_error(char *error, t_data *data);
 int		ft_tablen(char **tab);
 int		ft_isnumws(char *str);
 int		ff_mapline(t_data *data);
@@ -224,6 +225,7 @@ int		ft_hook(int keycode, void *param);
 int	close_window(t_data *data);
 int key_handler(int key, t_data *data);
 void draw_circle_matrix(t_data *data);
+int key_release_handler (int keycode, t_data *data);
 
 
 #endif

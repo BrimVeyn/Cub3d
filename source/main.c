@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 08:28:41 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/08 17:03:46 by bvan-pae         ###   ########.fr       */
+/*   Created: 2024/04/09 10:00:48 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/09 10:04:00 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 #include "minilibx/mlx.h"
 #include <X11/X.h>
+
+void draw_crosshair(t_data *data, int color, int r);
 
 void display(char **map)
 {
@@ -24,19 +26,19 @@ int parse_map(int map_fd, t_data *data)
 {
 	get_raw_map(map_fd, data);
 	if (check_order(data) == ERROR)
-		return (ERROR);
+		display_error("Cub3d: Wrong order\n", data);
 	if (get_texture_paths(data) == ERROR)
-		return (ERROR);
+		display_error("Cub3d: Wrong texture path\n", data);
 	if (get_colors(data) == ERROR)
-		return (ERROR);
+		display_error("Cub3d: Error colors\n", data);
 	if (check_onedir(data) == ERROR)
-		return (ERROR);
+		display_error("Cub3d: Only one player is allowed" , data);
 	data->map = del_blank(data->map);
 	data->map = fill_blank(data->map);
 	if (check_closed(data) == ERROR)
-		return (ERROR);
+		display_error("Cube3d: Map is not closed\n", data);
 	if (check_multimap(data) == ERROR)
-		return (ERROR);
+		display_error("Cub3d: Multimap detected\n", data);
 	display(data->map);
 	display(data->texture_paths);
 	printf("F = %zu\n", data->colors[0]);
@@ -224,12 +226,12 @@ void view_changed(t_data *data)
 	if (p->camera_moved_x)
 	{
 		rotspeed = ROTSPEED * 1;
-		p->camera_moved_x = 0;
+		// p->camera_moved_x = 0;
 	}
 	if (p->camera_moved_y)
 	{
 		rotspeed = ROTSPEED * -1;
-		p->camera_moved_y = 0;
+		// p->camera_moved_y = 0;
 	}
 	p->dirx = p->dirx * cos(rotspeed) - p->diry * sin(rotspeed);
 	p->diry = tmp_x * sin(rotspeed) + p->diry * cos(rotspeed);
@@ -248,26 +250,26 @@ void player_pos_changed(t_data *data)
 	p = data->player;
 	if (p->has_moved_y == 1)
 	{
-		p->has_moved_y = 0;
+		// p->has_moved_y = 0;
 		p->posx = p->posx + p->dirx * MOVESPEED;
 		p->posy = p->posy + p->diry * MOVESPEED;
 	}
 	if (p->has_moved_y == -1)
 	{
-		p->has_moved_y = 0;
+		// p->has_moved_y = 0;
 		p->posx = p->posx - p->dirx * MOVESPEED;
 		p->posy = p->posy - p->diry * MOVESPEED;
 
 	}
 	if (p->has_moved_x == 1)
 	{
-		p->has_moved_x = 0;
+		// p->has_moved_x = 0;
 		p->posx = p->posx + p->diry * MOVESPEED;
 		p->posy = p->posy - p->dirx * MOVESPEED;
 	}
 	if (p->has_moved_x == -1)
 	{
-		p->has_moved_x = 0;
+		// p->has_moved_x = 0;
 		p->posx = p->posx - p->diry * MOVESPEED;
 		p->posy = p->posy + p->dirx * MOVESPEED;
 	}
@@ -320,8 +322,6 @@ void render_minimap(t_data *data)
 	t_minimap *minimap = data->minimap;
 	int offset_x;
 	int offset_y;
-	int cell_size = 15;
-	int size = 9 * cell_size;
 	int minimap_colors[4] = {0x221712, 0x930000, 0x6d00fe, 0x19d043};
 	int i;
 	int j;
@@ -329,10 +329,10 @@ void render_minimap(t_data *data)
 	offset_x = 40;
 	offset_y = 40;
 	i = 0;
-	while (i < size)
+	while (i < minimap->draw_size)
 	{
 		j = 0;
-		while (j < size)
+		while (j < minimap->draw_size)
 		{
 			if (minimap->coord_matrix[i][j] == 0 && minimap->circle_matrix[i][j] == 1)
 				my_mlx_pixel_put(data, offset_x + j, offset_y + i, minimap_colors[0]);
@@ -368,21 +368,21 @@ void display_minimap(t_data *data)
 	int map_width = get_map_width(data);
 	int map_height = get_map_height(data);
 
-	while (i < m->minimap_size * m->minimap_scale)
+	while (i < m->draw_size)
 	{
 		j = 0;
 		curr_pos_x = (int) p->posx + (i / m->minimap_scale - area / 2 + 1) - 1;
-		if (curr_pos_x < 0 || curr_pos_x > map_height)
+		if (curr_pos_x < 0 || curr_pos_x > map_height - 1)
 		{
 			while (j < m->minimap_size * m->minimap_scale)
 				m->coord_matrix[i][j++] = -1;
 		}
 		else
 		{
-			while (j < m->minimap_size * m->minimap_scale)
+			while (j < m->draw_size)
 			{
 				curr_pos_y = (int) p->posy + (j / m->minimap_scale - area / 2);
-				if (curr_pos_y >= map_width || curr_pos_y < 0 || map[curr_pos_x][curr_pos_y] == '2')
+				if (curr_pos_y > map_width - 1 || curr_pos_y < 0 || map[curr_pos_x][curr_pos_y] == '2')
 					m->coord_matrix[i][j] = -1;
 				else
 					m->coord_matrix[i][j] = map[curr_pos_x][curr_pos_y] - 48;
@@ -417,11 +417,10 @@ int ray_loop(void *param)
 	init_ray(data);
 	ray_cast(data);
 	display_minimap(data);
+	draw_crosshair(data, 0xFFFFFF, 5);
+	draw_crosshair(data, 0xFFFFFF, 4);
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
-	// printf("NEW dirx = %f\n", data->player->dirx);
-	// printf("NEW diry = %f\n\n", data->player->diry);
 	usleep(25000);
-	// s12eep(5);
 	return (TRUE);
 }
 
@@ -439,7 +438,7 @@ int *xpm_to_tab(t_data *data, int idx)
 	tmp.addr_int = (int *)mlx_get_data_addr(tmp.img, &tmp.bpp, &tmp.line_lengh, &tmp.endian);
 	buffer = ft_calloc(1, sizeof * buffer * data->tex_size * data->tex_size);
 	if (!buffer)
-		display_error("Error\n", data);
+		display_error("Cub3d: Error allocating buffer\n", data);
 	y = 0;
 	while (y < data->tex_size)
 	{
@@ -459,7 +458,7 @@ void init_imgs(t_data *data)
 {
     data->textures = ft_calloc(5, sizeof(int *));
     if (!data->textures)
-        display_error("Error\n", data);
+        display_error("Cub3d: Error allocating textures buffer\n", data);
     data->textures[NORTH] = xpm_to_tab(data, NORTH);
     data->textures[SOUTH] = xpm_to_tab(data, SOUTH);
     data->textures[EAST] = xpm_to_tab(data, EAST);
@@ -529,6 +528,44 @@ void init_minimap_circle(t_data *data)
 
 
 
+int handle_mouse(int x, int y, t_data *data)
+{
+	(void)y;
+	double rotspeed;
+	t_player *p = data->player;
+	double tmp_x = p->dirx;
+	
+	if (x > 500)
+		rotspeed = (ROTSPEED * (0.01 * (WIDTH / 2 - x)) / 4);
+	else if (x < 500)
+		rotspeed = -ROTSPEED * (0.01 * (x - (WIDTH / 2))) / 4;
+	else
+		return (0);
+	// printf("x = %d y = %d |\n", x, y);
+	p->dirx = p->dirx * cos(rotspeed) - p->diry * sin(rotspeed);
+	p->diry = tmp_x * sin(rotspeed) + p->diry * cos(rotspeed);
+	tmp_x = p->planex;
+	p->planex = p->planex * cos(rotspeed) - p->planey * sin(rotspeed);
+	p->planey = tmp_x * sin(rotspeed) + p->planey * cos(rotspeed);
+	mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
+	// usleep(10);
+	return (0);
+}
+
+void draw_crosshair(t_data *data, int color, int r) {
+    int cx = WIDTH / 2;
+    int cy = HEIGHT / 2;
+    double angle = 0.0;
+
+    while (angle < 2 * PI) {
+        int x = cx + (int)(r * cos(angle));
+        int y = cy + (int)(r * sin(angle));
+        my_mlx_pixel_put(data, x, y, color);
+
+        angle += 0.01;
+    }
+}
+
 void	run_map(t_data *data)
 {
 	data->imgs = ft_calloc(2, sizeof(t_img_data));
@@ -544,10 +581,18 @@ void	run_map(t_data *data)
 	
 	init_imgs(data);
 
-	mlx_key_hook(data->window, ft_hook, (void *)data);
+	// mlx_key_hook(data->window, ft_hook, (void *)data);
 	mlx_hook(data->window, 17, 0, close_window, data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, key_handler, data);
+	mlx_hook(data->window, KeyRelease, KeyReleaseMask, key_release_handler, data);
+
+	mlx_mouse_hide(data->mlx, data->window);
+	mlx_mouse_hook(data->window, handle_mouse, data);
+	mlx_hook(data->window, MotionNotify, PointerMotionMask, handle_mouse, data);
+
 	mlx_loop_hook(data->mlx, &ray_loop, (void *)data);
+	// center_mouse_in_window(data->mlx, data->window);
+	mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 	mlx_loop(data->mlx);
 }
 
@@ -559,12 +604,11 @@ int main(int ac, char **av)
 
 	ft_bzero((void *) &data, sizeof(t_data));
 	if (ac != 2)
-		return (display_error("Error\n", &data));
+		display_error("Cub3d: Usage: ./cub3d <path_to_map>\n", &data);
 	map_fd = check_map(av[1]);
 	if (map_fd == ERROR)
-		return (display_error("Error\n", &data));
-	if (parse_map(map_fd, &data) == ERROR)
-		return (display_error("Error\n", &data));
+		display_error("Cub3d: Wrong path or not a .cub file\n", &data);
+	parse_map(map_fd, &data);
 	run_map(&data);
 	free_data(&data);
 

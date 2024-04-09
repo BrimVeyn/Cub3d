@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 10:51:59 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/08 09:43:33 by bvan-pae         ###   ########.fr       */
+/*   Created: 2024/04/09 10:01:31 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/09 10:01:50 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+#include <stdlib.h>
 
 int ft_reversecmp(char *str, char *cmp)
 {
@@ -40,12 +41,11 @@ int check_map(char *map)
 	return (fd);
 }
 
-int display_error(char *error, t_data *data)
+void	display_error(char *error, t_data *data)
 {
 	fd_printf(2, "%fs", error);
 	free_data(data);
 	exit(EXIT_FAILURE);
-	return (ERROR);
 }
 
 int	ft_isws(char c)
