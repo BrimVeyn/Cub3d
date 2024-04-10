@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:57:48 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/09 16:00:20 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/10 09:44:30 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ typedef struct	s_ray
 	int		mapx;
 	int		stepx;
 	int		stepy;
+	int		side;
 
 }				t_ray;
 
@@ -185,7 +186,7 @@ typedef struct s_data
 	t_player	*player;
 	t_ray		*ray;
 	t_minimap	*minimap;	
-	t_line		line;
+	t_line		*line;
 	t_animation	walk_animation;
 	int			old_time;
 }				t_data;

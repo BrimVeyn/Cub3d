@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:57:05 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/09 15:59:27 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:57:04 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,10 @@ void ray_cast(t_data *data)
 {
 	int x;
 	int hit;
-	int side;
 	
 	x = 0;
 	t_ray *ray = data->ray;
+	t_line *line = data->line;
 	while (x < WIDTH)
 	{
 		ray->camerax = 2 * x / (double) WIDTH - 1;
@@ -177,22 +177,51 @@ void ray_cast(t_data *data)
 			{
 				ray->sidedistx += ray->deltadistx;
 				ray->mapx += ray->stepx;
-				side = 0;
+				ray->side = 0;
 			}
 			else
 			{
 				ray->sidedisty += ray->deltadisty;
 				ray->mapy += ray->stepy;
-				side = 1;
+				ray->side = 1;
 			}
 			if (data->map[ray->mapx][ray->mapy] == '1')
+            {
+				// printf("rayx = %d, rayy = %d\n", ray->mapx, ray->mapy);
 				hit = 1;
+            }
 		}
 
-		if (side == 0)
+		if (ray->side == 0)
 			ray->perpwalldist = (ray->sidedistx - ray->deltadistx);
-		else
+		else if (ray->side == 1)
 			ray->perpwalldist = (ray->sidedisty - ray->deltadisty);
+
+		double	wall_x;
+
+		if (ray->side == 1 && ray->stepy == -1)
+			ray->side = 2;
+		if (ray->side == 0 && ray->stepx == 1)
+			ray->side = 3;
+
+		// if (ray->side == EAST || ray->side == WEST)
+		// 	wall_x = data->player->posy + ray->perpwalldist * ray->raydiry;
+		// else
+		// 	wall_x = data->player->posx + ray->perpwalldist * ray->raydirx;
+		//
+		if (ray->side == 0 || ray->side == 3)
+			wall_x = data->player->posy + ray->perpwalldist * ray->raydiry;
+		else
+			wall_x = data->player->posx + ray->perpwalldist * ray->raydirx;
+		wall_x -= floor(wall_x);
+
+
+		// printf("wall_x = %f\n", wall_x);
+		(void) line;
+
+
+
+		
 
 		int lineheight = (int)(HEIGHT / ray->perpwalldist);
 
@@ -211,11 +240,25 @@ void ray_cast(t_data *data)
 		int floorcolor = 0xFAF3DD;
 		int ceilingcolor = 0xAED9E0;
 		
-		if (side == 1)
+		if (ray->side == 1)
 			color = color / 2;
 		
-		for (int i = drawstart; i < drawend; i++)
-			my_mlx_pixel_put(data, x, i, color);
+		// for (int i = drawstart; i < drawend; i++)
+		// 	my_mlx_pixel_put(data, x, i, color);
+
+		line->y0 = drawstart;
+		line->y1 = drawend;
+		line->y = drawend - drawstart;
+		line->x = x;
+		line->tex_x = (wall_x * data->tex_size);
+			
+		for (int y = line->y0; y < line->y1; y++)
+        {
+			line->tex_y = ((((float)y - (float)line->y0) / ((float)line->y1 - (float)line->y0)) * data->tex_size);
+			int tex_color = data->textures[ray->side][line->tex_y * data->tex_size + line->tex_x];
+			my_mlx_pixel_put(data, x, y, tex_color);
+        }
+
 		for (int i = drawfloorstart; i < drawfloorend; i++)
 			my_mlx_pixel_put(data, x, i, floorcolor);
 		for (int i = drawceilingstart; i < drawceilingend; i++)
@@ -749,6 +792,7 @@ void	run_map(t_data *data)
 	data->ray = ft_calloc(2, sizeof(t_ray));
 	data->player = ft_calloc(2, sizeof(t_player));
 	data->minimap = ft_calloc(2, sizeof(t_minimap));
+	data->line = ft_calloc(2, sizeof(t_line));
 	init_data(data);
 	init_minimap_circle(data);
 	data->mlx = mlx_init();
