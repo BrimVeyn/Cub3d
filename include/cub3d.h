@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 15:57:48 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/10 09:44:30 by bvan-pae         ###   ########.fr       */
+/*   Created: 2024/04/10 12:58:34 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/10 12:58:52 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define PI 3.14159265358979323846
 
 # define ROTSPEED 0.06
-# define MOVESPEED 0.10
+# define MOVESPEED 0.08
 # define MINIMAP_SIZE 9
 # define MINIMAP_SCALE 20
 
@@ -151,8 +151,15 @@ typedef struct s_player
 typedef struct	s_animation
 {
 	int	offset;
+	int animation_speed;
 	int trigger_offset;
 }				t_animation;
+
+typedef struct	s_fps
+{
+	int	old_time;
+	float fps_number;
+}				t_fps;
 
 typedef struct	s_ray
 {
@@ -187,8 +194,8 @@ typedef struct s_data
 	t_ray		*ray;
 	t_minimap	*minimap;	
 	t_line		*line;
-	t_animation	walk_animation;
-	int			old_time;
+	t_animation	*walk_animation;
+	t_fps		*fps;
 }				t_data;
 
 
