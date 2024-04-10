@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:57:47 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/10 13:12:36 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/10 16:00:02 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -567,7 +567,7 @@ void display_minimap(t_data *data)
 	// for(int i = 0; i < m->draw_size; i++)
 	// {
 	// 	for(int k = 0; k < m->draw_size; k++)
-	// 		printf("[%d]", m->coord_matrix[i][k]);
+// 		printf("[%d]", m->coord_matrix[i][k]);
 	// 	printf("\n");
 	// }
 	render_minimap(data);
@@ -598,12 +598,23 @@ int ray_loop(void *param)
 	display_minimap(data);
 	draw_crosshair(data, 0xFFFFFF, 5);
 	draw_crosshair(data, 0xFFFFFF, 4);
+
+	t_img_data test;
+	int test_w;
+	int test_h;
+	char *path = ft_sprintf("./textures/gun_idle.xpm");
+	test.img = mlx_xpm_file_to_image(data->mlx, path, &test_w, &test_h);
+
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->window, test.img, 500, 500);
+
+	mlx_destroy_image(data->mlx, test.img);
 
 	mlx_set_font(data->mlx, data->window, "8x16");
 	data->fps->fps_number = 1000 / (get_time() - data->fps->old_time);
 	mlx_string_put(data->mlx, data->window, 930, 20, 0xFFFFFF, ft_sprintf("fps: %d", (int)data->fps->fps_number));
 	data->fps->old_time = get_time();
+	
 	
 	return (TRUE);
 }
@@ -823,6 +834,14 @@ void	run_map(t_data *data)
 	mlx_hook(data->window, 17, 0, close_window, data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, key_handler, data);
 	mlx_hook(data->window, KeyRelease, KeyReleaseMask, key_release_handler, data);
+
+	void *img_test;
+	t_img_data test;
+	int test_w = 101;
+	int test_h = 124;
+	char *path = "./textures/gun_idle.xpm";
+	test.img = mlx_new_image(data->mlx, 101, 124);
+	img_test = mlx_xpm_to_image(data->mlx, &path, &test_w, &test_h);
 
 	mlx_mouse_hide(data->mlx, data->window);
 	mlx_mouse_hook(data->window, handle_mouse, data);

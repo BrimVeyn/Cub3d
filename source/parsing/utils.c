@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:01:31 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/09 10:12:04 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:55:06 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int ft_reversecmp(char *str, char *cmp)
 
 	i = ft_strlen(str) - 1;
 	j = ft_strlen(cmp) - 1;
-	while (str[i] && cmp[j])
+	while (str[i] && cmp[j] && j >= 0)
 	{
 		if (str[i] != cmp[j])
 			return (ERROR);
