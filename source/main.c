@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:57:05 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/09 15:59:27 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:07:11 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,10 +196,10 @@ void ray_cast(t_data *data)
 
 		int lineheight = (int)(HEIGHT / ray->perpwalldist);
 
-		int drawstart = (-lineheight / 2 + HEIGHT / 2) + data->walk_animation.offset;
+		int drawstart = (-lineheight / 2 + HEIGHT / 2) + data->walk_animation->offset;
 		if (drawstart < 0)
 			drawstart = 0;
-		int drawend = (lineheight / 2 + HEIGHT / 2) + data->walk_animation.offset;
+		int drawend = (lineheight / 2 + HEIGHT / 2) + data->walk_animation->offset;
 		if (drawend >= HEIGHT)
 			drawend = HEIGHT - 1;
 		int drawceilingstart = 0;
@@ -259,30 +259,31 @@ void player_pos_changed(t_data *data)
 	t_player *p;
 
 	p = data->player;
-	if (p->has_moved_y == 1)
+	
+	if (p->has_moved_y == 1 && data->map[(int)(p->posx + p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy + p->diry * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
 	{
-		animation(&data->walk_animation);
-		p->posx = p->posx + p->dirx * MOVESPEED;
-		p->posy = p->posy + p->diry * MOVESPEED;
+		animation(data->walk_animation);
+		p->posx = p->posx + p->dirx * (MOVESPEED * (60 / data->fps->fps_number));
+		p->posy = p->posy + p->diry * (MOVESPEED * (60 / data->fps->fps_number));
 	}
-	if (p->has_moved_y == -1)
+	if (p->has_moved_y == -1 && data->map[(int)(p->posx - p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy - p->diry * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
 	{
-		animation(&data->walk_animation);
-		p->posx = p->posx - p->dirx * MOVESPEED;
-		p->posy = p->posy - p->diry * MOVESPEED;
+		animation(data->walk_animation);
+		p->posx = p->posx - p->dirx * (MOVESPEED * (60 / data->fps->fps_number));
+		p->posy = p->posy - p->diry * (MOVESPEED * (60 / data->fps->fps_number));
 
 	}
-	if (p->has_moved_x == 1)
+	if (p->has_moved_x == 1 && data->map[(int)(p->posx + p->diry * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy - p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
 	{
-		animation(&data->walk_animation);
-		p->posx = p->posx + p->diry * MOVESPEED;
-		p->posy = p->posy - p->dirx * MOVESPEED;
+		animation(data->walk_animation);
+		p->posx = p->posx + p->diry * (MOVESPEED * (60 / data->fps->fps_number));
+		p->posy = p->posy - p->dirx * (MOVESPEED * (60 / data->fps->fps_number));
 	}
-	if (p->has_moved_x == -1)
+	if (p->has_moved_x == -1 && data->map[(int)(p->posx - p->diry * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy + p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
 	{
-		animation(&data->walk_animation);
-		p->posx = p->posx - p->diry * MOVESPEED;
-		p->posy = p->posy + p->dirx * MOVESPEED;
+		animation(data->walk_animation);
+		p->posx = p->posx - p->diry * (MOVESPEED * (60 / data->fps->fps_number));
+		p->posy = p->posy + p->dirx * (MOVESPEED * (60 / data->fps->fps_number));
 	}
 	return ;
 }
@@ -546,8 +547,9 @@ int ray_loop(void *param)
 	draw_crosshair(data, 0xFFFFFF, 4);
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
 	mlx_set_font(data->mlx, data->window, "8x16");
-	mlx_string_put(data->mlx, data->window, 930, 20, 0xFFFFFF, ft_sprintf("fps: %d", (1000 / (get_time() - data->old_time))));
-	data->old_time = get_time();
+	data->fps->fps_number = 1000 / (get_time() - data->fps->old_time);
+	mlx_string_put(data->mlx, data->window, 930, 20, 0xFFFFFF, ft_sprintf("fps: %d", (int)data->fps->fps_number));
+	data->fps->old_time = get_time();
 	return (TRUE);
 }
 
@@ -743,8 +745,10 @@ void animation(t_animation *walk)
 
 void	run_map(t_data *data)
 {
-	data->walk_animation.trigger_offset = 0;
-	data->walk_animation.offset = 0;
+	data->walk_animation = ft_calloc(2, sizeof(t_animation));
+	data->walk_animation->trigger_offset = 0;
+	data->walk_animation->offset = 0;
+
 	data->imgs = ft_calloc(2, sizeof(t_img_data));
 	data->ray = ft_calloc(2, sizeof(t_ray));
 	data->player = ft_calloc(2, sizeof(t_player));
@@ -781,7 +785,8 @@ int main(int ac, char **av)
 	t_data	data;
 
 	ft_bzero((void *) &data, sizeof(t_data));
-	data.old_time = get_time();
+	data.fps = ft_calloc(2, sizeof(t_fps));
+	data.fps->old_time = get_time();
 	if (ac != 2)
 		display_error("Cub3d: Usage: ./cub3d <path_to_map>\n", &data);
 	map_fd = check_map(av[1]);
