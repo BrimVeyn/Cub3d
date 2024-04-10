@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:57:48 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/10 11:04:07 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:40:31 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct s_player
 typedef struct	s_animation
 {
 	int	offset;
+	int animation_speed;
 	int trigger_offset;
 }				t_animation;
 
