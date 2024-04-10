@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:57:47 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/10 12:58:19 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:12:36 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,7 +387,7 @@ void	paint_minimap(t_data *data)
 	t_minimap *m;
 	int offset_x;
 	int offset_y;
-	int minimap_colors[5] = {0x221712, 0x930000, 0x6d00fe, 0x19d043, 0xFFFFFF};
+	int minimap_colors[5] = {0xFAF3DD, 0x8a7c89, 0x2f3038, 0x19d043, 0xFFFFFF};
 	////////////////////////  4			8			16			32		64
 	///////////////////////   0			1			-1			30		c2
 	int i;
