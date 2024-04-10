@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 10:45:32 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/08 10:09:18 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:06:43 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ int key_handler(int keycode, t_data *data)
 	if (keycode == ARROW_RIGHT)
 		data->player->camera_moved_y = 1;
 	if (keycode == W_KEY)
-		data->player->has_moved_y = 1;
+		data->player->has_moved_y++;
 	if (keycode == S_KEY)
-		data->player->has_moved_y = -1;
+		data->player->has_moved_y--;
 	if (keycode == D_KEY)
-		data->player->has_moved_x = 1;
+		data->player->has_moved_x++;
 	if (keycode == A_KEY)
-		data->player->has_moved_x = -1;
+		data->player->has_moved_x--;
 	if (keycode == ESCAPE)
 		close_and_exit(data);
 	return (0);
@@ -69,12 +69,12 @@ int key_release_handler (int keycode, t_data *data)
 	if (keycode == ARROW_RIGHT)
 		data->player->camera_moved_y = 0;
 	if (keycode == W_KEY)
-		data->player->has_moved_y = 0;
+		data->player->has_moved_y--;
 	if (keycode == S_KEY)
-		data->player->has_moved_y = 0;
+		data->player->has_moved_y++;
 	if (keycode == D_KEY)
-		data->player->has_moved_x = 0;
+		data->player->has_moved_x--;
 	if (keycode == A_KEY)
-		data->player->has_moved_x = 0;
+		data->player->has_moved_x++;
 	return (0);
 }
