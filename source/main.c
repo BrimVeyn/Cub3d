@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:57:05 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/10 11:07:11 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:42:32 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,37 +253,47 @@ void view_changed(t_data *data)
 	return ;
 }
 
-
 void player_pos_changed(t_data *data)
 {
 	t_player *p;
+	double speed_ajustement;
 
 	p = data->player;
+	if (p->has_moved_x != 0 && p->has_moved_y != 0)
+	{
+		speed_ajustement = (MOVESPEED * (60 / data->fps->fps_number)) / 2;
+		data->walk_animation->animation_speed = 1;
+	}
+	else
+	{
+		data->walk_animation->animation_speed = 2;
+		speed_ajustement = MOVESPEED * (60 / data->fps->fps_number);
+	}
 	
 	if (p->has_moved_y == 1 && data->map[(int)(p->posx + p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy + p->diry * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
 	{
 		animation(data->walk_animation);
-		p->posx = p->posx + p->dirx * (MOVESPEED * (60 / data->fps->fps_number));
-		p->posy = p->posy + p->diry * (MOVESPEED * (60 / data->fps->fps_number));
+		p->posx = p->posx + p->dirx * speed_ajustement;
+		p->posy = p->posy + p->diry * speed_ajustement;
 	}
 	if (p->has_moved_y == -1 && data->map[(int)(p->posx - p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy - p->diry * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
 	{
 		animation(data->walk_animation);
-		p->posx = p->posx - p->dirx * (MOVESPEED * (60 / data->fps->fps_number));
-		p->posy = p->posy - p->diry * (MOVESPEED * (60 / data->fps->fps_number));
+		p->posx = p->posx - p->dirx * speed_ajustement;
+		p->posy = p->posy - p->diry * speed_ajustement;
 
 	}
 	if (p->has_moved_x == 1 && data->map[(int)(p->posx + p->diry * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy - p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
 	{
 		animation(data->walk_animation);
-		p->posx = p->posx + p->diry * (MOVESPEED * (60 / data->fps->fps_number));
-		p->posy = p->posy - p->dirx * (MOVESPEED * (60 / data->fps->fps_number));
+		p->posx = p->posx + p->diry * speed_ajustement;
+		p->posy = p->posy - p->dirx * speed_ajustement;
 	}
 	if (p->has_moved_x == -1 && data->map[(int)(p->posx - p->diry * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy + p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
 	{
 		animation(data->walk_animation);
-		p->posx = p->posx - p->diry * (MOVESPEED * (60 / data->fps->fps_number));
-		p->posy = p->posy + p->dirx * (MOVESPEED * (60 / data->fps->fps_number));
+		p->posx = p->posx - p->diry * speed_ajustement;
+		p->posy = p->posy + p->dirx * speed_ajustement;
 	}
 	return ;
 }
@@ -546,10 +556,12 @@ int ray_loop(void *param)
 	draw_crosshair(data, 0xFFFFFF, 5);
 	draw_crosshair(data, 0xFFFFFF, 4);
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
+
 	mlx_set_font(data->mlx, data->window, "8x16");
 	data->fps->fps_number = 1000 / (get_time() - data->fps->old_time);
 	mlx_string_put(data->mlx, data->window, 930, 20, 0xFFFFFF, ft_sprintf("fps: %d", (int)data->fps->fps_number));
 	data->fps->old_time = get_time();
+	
 	return (TRUE);
 }
 
@@ -732,14 +744,14 @@ void draw_crosshair(t_data *data, int color, int r) {
 
 void animation(t_animation *walk)
 {
-	if (walk->offset == 8)
+	if (walk->offset >= 8)
 		walk->trigger_offset = 1;
-	if (walk->offset == -8)
+	if (walk->offset <= -8)
 		walk->trigger_offset = 0;
 	if (walk->trigger_offset == 0)
-		walk->offset += 2;
+		walk->offset += walk->animation_speed;
 	else
-		walk->offset -= 2;
+		walk->offset -= walk->animation_speed;
 	// printf("hello\n");
 }
 
@@ -748,6 +760,7 @@ void	run_map(t_data *data)
 	data->walk_animation = ft_calloc(2, sizeof(t_animation));
 	data->walk_animation->trigger_offset = 0;
 	data->walk_animation->offset = 0;
+	data->walk_animation->animation_speed = 2;
 
 	data->imgs = ft_calloc(2, sizeof(t_img_data));
 	data->ray = ft_calloc(2, sizeof(t_ray));
