@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 12:25:16 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 11:33:02 by marvin           ###   ########.fr       */
+/*   Created: 2024/04/11 09:57:13 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/11 10:19:42 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void free_texture(char **texture) {
-  int i;
+int get_map_width(t_data *data)
+{
+	int  i;
 
-  if (!texture)
-    return;
-  i = 0;
-  while (i < 4) {
-    free(texture[i]);
-    i++;
-  }
-  free(texture);
+	i = 0;
+	while (data->map[0][i])
+		i++;
+	return (i);
 }
 
-void free_tab(char **tab) {
-  int i;
+int get_map_height(t_data *data)
+{
+	int i;
 
-  if (!tab)
-    return;
-  i = 0;
-  while (tab[i]) {
-    free(tab[i]);
-    i++;
-  }
-  free(tab);
-}
-
-void free_data(t_data *data) {
-  free_tab(data->map);
-  free_texture(data->texture_paths);
+	i = 0;
+	while(data->map[i])
+		i++;
+	return (i);
 }

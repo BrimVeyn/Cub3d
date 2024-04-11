@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:29:34 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/04 14:07:00 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:10:45 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,16 @@ int get_componants(t_data *data, int i, int c, int idx)
 	int	g;
 	int b;
 
+	printf("idx = %d, s = |%s|\n", idx, &data->map[i][idx]);
 	r = ft_atoi(&data->map[i][idx]);
 	idx += int_len(r) + 1;
+	idx += ws_count(&data->map[i][idx]);
+	printf("idx = %d, s = |%s|\n", idx, &data->map[i][idx]);
 	g = ft_atoi(&data->map[i][idx]);
 	idx += int_len(g) + 1;
+	printf("idx = %d, s = |%s|\n", idx, &data->map[i][idx]);
 	b = ft_atoi(&data->map[i][idx]);
+	printf("R = %d, G = %d, B = %d\n", r, g, b);
 	data->colors[c] = (r << 16) + (g << 8) + (b << 1); 
 	if (r > 255 || g > 255 || b > 255)
 		return (ERROR);

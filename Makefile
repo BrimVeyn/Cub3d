@@ -17,7 +17,12 @@ SRC 			:= source/main.c \
 				   source/parsing/free.c \
 				   source/run/draw.c \
 				   source/run/hooks.c \
-				   source/run/minimap.c \
+				   source/run/minimap_display.c \
+				   source/run/circle_matrix_rotation.c \
+				   source/run/circle_matrix.c \
+				   source/run/inits.c \
+				   source/run/inits_two.c \
+				   source/run/utils.c \
 
 GCL				:= git clone
 MINILIBX_SRC	:= https://github.com/42Paris/minilibx-linux.git
