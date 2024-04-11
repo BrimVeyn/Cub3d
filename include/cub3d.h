@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:58:34 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/10 13:00:34 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:15:59 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ enum
 	DIR_SO,
 	DIR_WE,
 	DIR_EA,
+};
+
+enum
+{
+	IDLE,
+	SHOOT00,
+	SHOOT01,
+	SHOOT02,
 };
 
 enum
@@ -119,7 +127,9 @@ typedef struct s_img_data
 	int				bpp;
 	int				line_lengh;
 	int				endian;
-	void			*next;
+	int				width;
+	int				height;
+	int				o_color;
 
 }					t_img_data;
 
@@ -161,6 +171,12 @@ typedef struct	s_fps
 	float fps_number;
 }				t_fps;
 
+typedef struct s_hud
+{
+	t_img_data	*frames;
+	int			animation_frame;
+}				t_hud;
+
 typedef struct	s_ray
 {
 	double	camerax;
@@ -196,6 +212,7 @@ typedef struct s_data
 	t_line		*line;
 	t_animation	*walk_animation;
 	t_fps		*fps;
+	t_hud		*hud;
 }				t_data;
 
 
