@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 12:57:47 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 15:48:51 by bvan-pae         ###   ########.fr       */
+/*   Created: 2024/04/11 15:59:17 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/11 16:10:50 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,70 @@ int	get_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
+void put_to_windows_without(t_data *data, t_img_data img, int offsetx, int offsety)
+{
+	int i = 0;
+	int j = 0;
+
+	while (i < img.height)
+	{
+		j = 0;
+		while (j < img.width)
+		{
+			if (img.addr_int[i * img.width + j] != img.o_color)
+				my_mlx_pixel_put(data, offsetx + j, offsety + i, img.addr_int[i * img.width + j]);
+			j++;
+		}
+		i++;
+	}
+}
+
+void calcul_hud (t_data *data)
+{
+	int w;
+	int h;
+	int i;
+
+	i = 0;
+	w = 0;
+	h = 0;
+	data->hud->frames[IDLE].addr_int = xpm_to_tab(data, &w, &h, "./textures/gun_sprites/gun_idle.xpm");
+	data->hud->frames[SHOOT00].addr_int = xpm_to_tab(data, &w, &h, "./textures/gun_sprites/gun_shoot00.xpm");
+	data->hud->frames[SHOOT01].addr_int = xpm_to_tab(data, &w, &h, "./textures/gun_sprites/gun_shoot01.xpm");
+	data->hud->frames[SHOOT02].addr_int = xpm_to_tab(data, &w, &h, "./textures/gun_sprites/gun_shoot02.xpm");
+	printf("%d", data->hud->frames[IDLE].addr_int[1]);
+	while(i < 4)
+	{
+		data->hud->frames[i].width = 512;
+		data->hud->frames[i].height = 512;
+		data->hud->frames[i++].o_color = -16777216;
+	}
+}
+
+void gun_animation(t_data *data)
+{
+	if (data->hud->animation_frame >= 1 && data->hud->animation_frame < 4)
+	{
+		put_to_windows_without(data, data->hud->frames[SHOOT00], WIDTH - data->hud->frames[SHOOT00].width - 50, HEIGHT - data->hud->frames[SHOOT00].height);
+		data->hud->animation_frame++;
+	}
+	else if (data->hud->animation_frame >= 4 && data->hud->animation_frame < 8)
+	{
+		put_to_windows_without(data, data->hud->frames[SHOOT01], WIDTH - data->hud->frames[SHOOT01].width - 50, HEIGHT - data->hud->frames[SHOOT01].height);
+		data->hud->animation_frame++;
+	}
+	else if (data->hud->animation_frame >= 8 && data->hud->animation_frame < 12)
+	{
+		put_to_windows_without(data, data->hud->frames[SHOOT02], WIDTH - data->hud->frames[SHOOT02].width - 50, HEIGHT - data->hud->frames[SHOOT02].height);
+		data->hud->animation_frame++;
+	}
+	else
+	{
+		data->hud->animation_frame = 0;
+		put_to_windows_without(data, data->hud->frames[IDLE], WIDTH - data->hud->frames[IDLE].width - 50, HEIGHT - data->hud->frames[IDLE].height);
+	}	
+}
+
 int ray_loop(void *param)
 {
 	t_data *data;
@@ -278,6 +342,8 @@ int ray_loop(void *param)
 	display_minimap(data);
 	draw_crosshair(data, 0xFFFFFF, 5);
 	draw_crosshair(data, 0xFFFFFF, 4);
+	
+	gun_animation(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->window, data->minimap_img->img, 30 + data->minimap->draw_size / 2, 30 + data->minimap->draw_size / 2);
 	mlx_set_font(data->mlx, data->window, "8x16");
@@ -287,30 +353,31 @@ int ray_loop(void *param)
 	free(fps);
 	data->fps->old_time = get_time();
 	
+	
 	return (TRUE);
 }
 
-int *xpm_to_tab(t_data *data, int *size, char *path)
+int *xpm_to_tab( t_data *data, int *width, int *height, char *path)
 {
 	t_img_data tmp;
 	int		*buffer;
 	int x;
 	int y;
 
-	tmp.img = mlx_xpm_file_to_image(data->mlx, path, size, size);
+	tmp.img = mlx_xpm_file_to_image(data->mlx, path, width, height);
 	if (!tmp.img)
 		display_error("Error, couldn't load texture.\n", data);
 	tmp.addr_int = (int *)mlx_get_data_addr(tmp.img, &tmp.bpp, &tmp.line_lengh, &tmp.endian);
-	buffer = ft_calloc(1, sizeof * buffer * data->tex_size * data->tex_size);
+	buffer = ft_calloc(1, sizeof * buffer * *width * *height);
 	if (!buffer)
 		display_error("Cub3d: Error allocating buffer\n", data);
 	y = 0;
-	while (y < data->tex_size)
+	while (y < *height)
 	{
 		x = 0;
-		while (x < data->tex_size)
+		while (x < *width)
 		{
-			buffer[y * data->tex_size + x] = tmp.addr_int[y * data->tex_size + x];
+			buffer[y * *width + x] = tmp.addr_int[y * *width + x];
 			++x;
 		}
 		y++;
@@ -319,13 +386,13 @@ int *xpm_to_tab(t_data *data, int *size, char *path)
 	return (buffer);
 }
 
-int handle_mouse(int x, int y, t_data *data)
+int handle_mouvement(int x, int y, t_data *data)
 {
-	(void)y;
 	double rotspeed;
 	t_player *p = data->player;
 	double tmp_x = p->dirx;
-	
+
+	(void)y;
 	if (x > 500)
 		rotspeed = (ROTSPEED * (0.01 * ((float)WIDTH / 2 - x)) / 4);
 	else if (x < 500)
@@ -340,6 +407,15 @@ int handle_mouse(int x, int y, t_data *data)
 	p->planey = tmp_x * sin(rotspeed) + p->planey * cos(rotspeed);
 	mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 	// usleep(10);
+	return (0);
+}
+
+int handle_mouse(int keycode, int x, int y, t_data *data)
+{
+	(void)x;
+	(void)y;
+	if (keycode == 1)
+		data->hud->animation_frame = 1;
 	return (0);
 }
 
@@ -377,11 +453,17 @@ void	run_map(t_data *data)
 	data->walk_animation->offset = 0;
 	data->walk_animation->animation_speed = 2;
 
+
+	data->hud = ft_calloc(2, sizeof(t_hud));
+	data->hud->frames = ft_calloc(5, sizeof(t_img_data));
+	data->hud->animation_frame = 0;
+
 	data->imgs = ft_calloc(2, sizeof(t_img_data));
 	data->ray = ft_calloc(2, sizeof(t_ray));
 	data->player = ft_calloc(2, sizeof(t_player));
 	data->minimap = ft_calloc(2, sizeof(t_minimap));
 	data->line = ft_calloc(2, sizeof(t_line));
+	data->minimap_img = ft_calloc(2, sizeof(t_img_data));
 	init_data(data);
 	init_minimap_circle(data);
 	data->mlx = mlx_init();
@@ -396,8 +478,18 @@ void	run_map(t_data *data)
 	mlx_hook(data->window, KeyPress, KeyPressMask, key_handler, data);
 	mlx_hook(data->window, KeyRelease, KeyReleaseMask, key_release_handler, data);
 
+	void *img_test;
+	t_img_data test;
+	int test_w = 101;
+	int test_h = 124;
+	char *path = "./textures/gun_idle.xpm";
+	test.img = mlx_new_image(data->mlx, 101, 124);
+	img_test = mlx_xpm_to_image(data->mlx, &path, &test_w, &test_h);
+
+	mlx_mouse_hide(data->mlx, data->window);
+	mlx_hook(data->window,MotionNotify,PointerMotionMask,handle_mouvement, data);
 	mlx_mouse_hook(data->window, handle_mouse, data);
-	mlx_hook(data->window, MotionNotify, PointerMotionMask, handle_mouse, data);
+	// mlx_hook(data->window, MotionNotify, PointerMotionMask, handle_mouse, data);
 	
 
 	mlx_mouse_hide(data->mlx, data->window);

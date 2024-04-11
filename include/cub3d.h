@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 12:58:34 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 14:55:10 by bvan-pae         ###   ########.fr       */
+/*   Created: 2024/04/11 15:57:43 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/11 16:06:02 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ enum {
   WEST,
 };
 
+enum
+{
+	IDLE,
+	SHOOT00,
+	SHOOT01,
+	SHOOT02,
+};
+
 enum {
   C_F,
   C_C,
@@ -94,102 +102,116 @@ enum {
 //--------------------STRUCT-----------------------
 
 typedef struct s_minimap {
-  int **coord_matrix;
-  int **circle_matrix;
-  int **filled_circle_matrix;
-  int **rotated_matrix;
-  int *colors;
-  int minimap_scale;
-  int minimap_size;
-  int draw_size;
-  int circle_radius;
-  int center_x;
-  int center_y;
-  double angle;
+	int **coord_matrix;
+	int **circle_matrix;
+	int **filled_circle_matrix;
+	int **rotated_matrix;
+	int *colors;
+	int minimap_scale;
+	int minimap_size;
+	int draw_size;
+	int circle_radius;
+	int center_x;
+	int center_y;
+	double angle;
 
 } t_minimap;
 
 typedef struct s_img_data {
-  void *img;
-  void *addr;
-  int *addr_int;
-  int bpp;
-  int line_lengh;
-  int endian;
-  void *next;
+	void *img;
+	void *addr;
+	int *addr_int;
+	int bpp;
+	int line_lengh;
+	int endian;
+	int width;
+	int height;
+	int o_color;
 
 } t_img_data;
 
 typedef struct s_line {
-  int x;
-  int y;
-  int y0;
-  int y1;
-  int tex_x;
-  int tex_y;
-  int span;
-  int off;
+	int x;
+	int y;
+	int y0;
+	int y1;
+	int tex_x;
+	int tex_y;
+	int span;
+	int off;
 } t_line;
 
-typedef struct s_player {
-  int has_moved_x;
-  int has_moved_y;
-  int camera_moved_x;
-  int camera_moved_y;
-  double dirx;
-  double diry;
-  double planex;
-  double planey;
-  double posx;
-  double posy;
-} t_player;
+typedef struct s_player
+{
+	int has_moved_x;
+	int has_moved_y;
+	int camera_moved_x;
+	int camera_moved_y;
+	double	dirx;
+	double	diry;
+	double	planex;
+	double	planey;
+	double	posx;
+	double	posy;
+}				t_player;
 
-typedef struct s_animation {
-  int offset;
-  int animation_speed;
-  int trigger_offset;
-} t_animation;
+typedef struct	s_animation
+{
+	int	offset;
+	int animation_speed;
+	int trigger_offset;
+}				t_animation;
 
-typedef struct s_fps {
-  int old_time;
-  float fps_number;
-} t_fps;
+typedef struct	s_fps
+{
+	int	old_time;
+	float fps_number;
+}				t_fps;
 
-typedef struct s_ray {
-  double camerax;
-  double raydirx;
-  double raydiry;
-  double deltadistx;
-  double deltadisty;
-  double sidedistx;
-  double sidedisty;
-  double perpwalldist;
-  int mapy;
-  int mapx;
-  int stepx;
-  int stepy;
-  int side;
+typedef struct s_hud
+{
+	t_img_data	*frames;
+	int			animation_frame;
+}				t_hud;
 
-} t_ray;
+typedef struct	s_ray
+{
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	double	deltadistx;
+	double	deltadisty;
+	double	sidedistx;
+	double	sidedisty;
+	double	perpwalldist;
+	int		mapy;
+	int		mapx;
+	int		stepx;
+	int		stepy;
+	int		side;
 
-typedef struct s_data {
+}				t_ray;
 
-  char **map;
-  char **texture_paths;
-  int **textures;
-  int tex_size;
-  size_t colors[2];
-  void *mlx;
-  void *window;
-  t_img_data *imgs;
-  t_img_data *minimap_img;
-  t_player *player;
-  t_ray *ray;
-  t_minimap *minimap;
-  t_line *line;
-  t_animation *walk_animation;
-  t_fps *fps;
-} t_data;
+typedef struct s_data
+{
+
+	char		**map;
+	char		**texture_paths;
+	int			**textures;
+	int			tex_size;
+	size_t		colors[2];
+	void		*mlx;
+	void		*window;
+	t_img_data	*imgs;
+	t_player	*player;
+	t_ray		*ray;
+	t_minimap	*minimap;	
+	t_img_data *minimap_img;
+	t_line		*line;
+	t_animation	*walk_animation;
+	t_fps		*fps;
+	t_hud		*hud;
+}				t_data;
 
 //---------------------PARSING---------------------
 
@@ -233,6 +255,7 @@ int count_blank(char **map);
 //-------------------------------------------------
 
 void display(char **map); // fonction utilitaire a supprimer
+void calcul_hud (t_data *data);
 
 int *init_minimap_colors(t_data *data);
 void init_data(t_data *data);
@@ -261,6 +284,6 @@ int ft_hook(int keycode, void *param);
 int close_window(t_data *data);
 int key_handler(int key, t_data *data);
 int key_release_handler(int keycode, t_data *data);
-int *xpm_to_tab(t_data *data, int *size, char *path);
+int *xpm_to_tab( t_data *data, int *width, int *height, char *path);
 
 #endif
