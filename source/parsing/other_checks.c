@@ -12,42 +12,39 @@
 
 #include "../../include/cub3d.h"
 
-int check_all_direction(char **map, int i, int j)
+int	check_all_direction(char **map, int i, int j)
 {
-	if ((!map[i - 1][j - 1] || map[i - 1][j - 1] == '2') ||
-		(!map[i - 1][j] || map[i - 1][j] == '2') ||
-		(!map[i - 1][j + 1] || map[i - 1][j + 1] == '2') ||
-		(!map[i][j - 1] || map[i][j - 1] == '2') ||
-		(!map[i][j + 1] || map[i][j + 1] == '2') ||
-		(!map[i + 1][j - 1] || map[i + 1][j - 1] == '2') ||
-		(!map[i + 1][j] || map[i + 1][j] == '2') ||
-		(!map[i + 1][j + 1] || map[i + 1][j + 1] == '2'))
-			return (ERROR);
+	if ((!map[i - 1][j - 1] || map[i - 1][j - 1] == '2') || (!map[i - 1][j]
+			|| map[i - 1][j] == '2') || (!map[i - 1][j + 1] || map[i - 1][j
+			+ 1] == '2') || (!map[i][j - 1] || map[i][j - 1] == '2')
+		|| (!map[i][j + 1] || map[i][j + 1] == '2') || (!map[i + 1][j - 1]
+			|| map[i + 1][j - 1] == '2') || (!map[i + 1][j] || map[i
+			+ 1][j] == '2') || (!map[i + 1][j + 1] || map[i + 1][j + 1] == '2'))
+		return (ERROR);
 	return (TRUE);
 }
 
-
-int ft_isdir(char c)
+int	ft_isdir(char c)
 {
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		return (TRUE);
 	return (ERROR);
 }
 
-
-int wrong_char(char c)
+int	wrong_char(char c)
 {
 	if (c == 'D' && BONUS == 1)
 		return (TRUE);
-	if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '1' && c != '2' && c != '0')
+	if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '1' && c != '2'
+		&& c != '0')
 		return (ERROR);
 	return (TRUE);
 }
 
-int check_closed(t_data *data)
+int	check_closed(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (data->map[i])
@@ -69,9 +66,9 @@ int check_closed(t_data *data)
 
 int	check_onedir(t_data *data)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -86,7 +83,7 @@ int	check_onedir(t_data *data)
 				&& data->map[i][j] != 'N' && data->map[i][j] != 'S'
 				&& data->map[i][j] != 'E' && data->map[i][j] != 'W'
 				&& data->map[i][j] != ' ' && data->map[i][j] != 'D')
-					return (ERROR);
+				return (ERROR);
 			j++;
 		}
 		i++;
@@ -96,13 +93,12 @@ int	check_onedir(t_data *data)
 	return (TRUE);
 }
 
-
-int check_multimap(t_data *data)
+int	check_multimap(t_data *data)
 {
-	int i;
-	int j;
-	int len;
-	int two_count;
+	int	i;
+	int	j;
+	int	len;
+	int	two_count;
 
 	i = 0;
 	len = ft_strlen(data->map[i]);

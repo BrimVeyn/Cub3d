@@ -12,33 +12,38 @@
 
 #include "../../include/cub3d.h"
 
-void free_texture(char **texture) {
-  int i;
+void	free_texture(char **texture)
+{
+	int	i;
 
-  if (!texture)
-    return;
-  i = 0;
-  while (i < 4) {
-    free(texture[i]);
-    i++;
-  }
-  free(texture);
+	if (!texture)
+		return ;
+	i = 0;
+	while (i < 4)
+	{
+		free(texture[i]);
+		i++;
+	}
+	free(texture);
 }
 
-void free_tab(char **tab) {
-  int i;
+void	free_tab(char **tab)
+{
+	int	i;
 
-  if (!tab)
-    return;
-  i = 0;
-  while (tab[i]) {
-    free(tab[i]);
-    i++;
-  }
-  free(tab);
+	if (!tab)
+		return ;
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
-void free_data(t_data *data) {
-  free_tab(data->map);
-  free_texture(data->texture_paths);
+void	free_data(t_data *data)
+{
+	free_tab(data->map);
+	free_texture(data->texture_paths);
 }

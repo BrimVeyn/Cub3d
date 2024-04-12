@@ -12,11 +12,11 @@
 
 #include "../../include/cub3d.h"
 
-int ft_isnumws(char *str)
+int	ft_isnumws(char *str)
 {
-	int i;
-	size_t num;
-	size_t ws;
+	int		i;
+	size_t	num;
+	size_t	ws;
 
 	i = 0;
 	num = 0;
@@ -34,10 +34,9 @@ int ft_isnumws(char *str)
 	return (FALSE);
 }
 
-
-int ff_mapline(t_data *data)
+int	ff_mapline(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (data->map[i])
@@ -49,39 +48,37 @@ int ff_mapline(t_data *data)
 	return (ERROR);
 }
 
-int has_letter(char *str)
+int	has_letter(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (ft_strnstr(str, "NO", ft_strlen(str)) ||
-			ft_strnstr(str, "SO", ft_strlen(str)) ||
-			ft_strnstr(str, "WE", ft_strlen(str)) ||
-			ft_strnstr(str, "EA", ft_strlen(str)) ||
-			ft_strnstr(str, "F", ft_strlen(str)) ||
-			ft_strnstr(str, "C", ft_strlen(str)))
-				return (TRUE);
+		if (ft_strnstr(str, "NO", ft_strlen(str)) || ft_strnstr(str, "SO",
+				ft_strlen(str)) || ft_strnstr(str, "WE", ft_strlen(str))
+			|| ft_strnstr(str, "EA", ft_strlen(str)) || ft_strnstr(str, "F",
+				ft_strlen(str)) || ft_strnstr(str, "C", ft_strlen(str)))
+			return (TRUE);
 		i++;
 	}
 	return (ERROR);
 }
 
-int check_order(t_data *data)
+int	check_order(t_data *data)
 {
-	int i;
-	int first_line;
+	int	i;
+	int	first_line;
 
 	i = 0;
 	first_line = ff_mapline(data);
 	while (data->map[i])
 	{
 		if (has_letter(data->map[i]) == TRUE)
-        {
+		{
 			if (i > first_line)
 				return (ERROR);
-        }
+		}
 		i++;
 	}
 	return (TRUE);

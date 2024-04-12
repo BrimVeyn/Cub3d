@@ -12,9 +12,10 @@
 
 #include "../../include/cub3d.h"
 
-void update_door_vars(t_ray *ray, t_data *data)
+void	update_door_vars(t_ray *ray, t_data *data)
 {
-	if (data->map[ray->mapx][ray->mapy] == 'O' && ray->x == WIDTH * 0.5f && data->map[(int) data->player->posx][(int) data->player->posy] != 'O')
+	if (data->map[ray->mapx][ray->mapy] == 'O' && ray->x == WIDTH * 0.5f
+		&& data->map[(int)data->player->posx][(int)data->player->posy] != 'O')
 	{
 		if (ray->side == 0)
 			ray->perpwalldist = (ray->sidedistx - ray->deltadistx);
@@ -23,14 +24,15 @@ void update_door_vars(t_ray *ray, t_data *data)
 		if (ray->perpwalldist < 1.0f)
 			ray->aiming_at_open_door = 1;
 	}
-	if (BONUS && (data->map[ray->mapx][ray->mapy] == 'D' || data->map[ray->mapx][ray->mapy] == 'O'))
+	if (BONUS && (data->map[ray->mapx][ray->mapy] == 'D'
+			|| data->map[ray->mapx][ray->mapy] == 'O'))
 	{
 		ray->door_coord_x = ray->mapx;
 		ray->door_coord_y = ray->mapy;
 	}
 }
 
-void ray_perform_dda(t_ray *ray, t_data *data)
+void	ray_perform_dda(t_ray *ray, t_data *data)
 {
 	if (ray->sidedistx < ray->sidedisty)
 	{
@@ -52,26 +54,29 @@ void ray_perform_dda(t_ray *ray, t_data *data)
 		ray->hit = 2;
 }
 
-void draw_texture_line(t_data *data, t_ray *ray, t_line *line)
+void	draw_texture_line(t_data *data, t_ray *ray, t_line *line)
 {
-	int y;
+	int	y;
 
 	y = line->y0;
 	while (y < line->y1)
 	{
-		line->tex_y = ((((float)y - (float)line->y0) / ((float)line->y1 - (float)line->y0)) * line->span + line->off);
-		line->tex_color = data->textures[ray->side][line->tex_y * data->tex_size + line->tex_x];
+		line->tex_y = ((((float)y - (float)line->y0) / ((float)line->y1
+						- (float)line->y0)) * line->span + line->off);
+		line->tex_color = data->textures[ray->side][line->tex_y * data->tex_size
+			+ line->tex_x];
 		if (BONUS && ray->hit == 2)
-			line->tex_color = data->textures[DOOR][line->tex_y * data->tex_size + line->tex_x];
+			line->tex_color = data->textures[DOOR][line->tex_y * data->tex_size
+				+ line->tex_x];
 		my_mlx_pixel_put(data, ray->x, y, line->tex_color);
 		y++;
 	}
 }
 
-void draw_f_and_c_line(t_data *data, t_ray *ray, t_line *line)
+void	draw_f_and_c_line(t_data *data, t_ray *ray, t_line *line)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (line->y1 < HEIGHT)
 		my_mlx_pixel_put(data, ray->x, line->y1++, data->colors[FLOOR]);
@@ -79,10 +84,10 @@ void draw_f_and_c_line(t_data *data, t_ray *ray, t_line *line)
 		my_mlx_pixel_put(data, ray->x, i++, data->colors[CEILING]);
 }
 
-void ray_cast(t_data *data)
+void	ray_cast(t_data *data)
 {
-	t_ray *ray;
-	t_line *line;
+	t_ray	*ray;
+	t_line	*line;
 
 	ray = data->ray;
 	line = data->line;
@@ -101,5 +106,5 @@ void ray_cast(t_data *data)
 		ray->x++;
 	}
 	if (ray->aiming_at_open_door || ray->aiming_at_door)
-		printf("do\n"); //LARBIN
+		printf("do\n"); // LARBIN
 }

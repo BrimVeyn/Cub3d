@@ -12,11 +12,11 @@
 
 #include "../../include/cub3d.h"
 
-void fill_new_map(char **new_map, char **map, int llength)
+void	fill_new_map(char **new_map, char **map, int llength)
 {
-	int i;
-	int j;
-	int line_length;
+	int	i;
+	int	j;
+	int	line_length;
 
 	i = 0;
 	while (map[i])
@@ -35,12 +35,12 @@ void fill_new_map(char **new_map, char **map, int llength)
 	}
 }
 
-char **fill_blank(char **map)
+char	**fill_blank(char **map)
 {
-	int llength;
-	char **new_map;
-	int i;
-	int len;
+	int		llength;
+	char	**new_map;
+	int		i;
+	int		len;
 
 	i = 0;
 	len = ft_tablen(map);
@@ -51,7 +51,6 @@ char **fill_blank(char **map)
 	fill_new_map(new_map, map, llength);
 	free_tab(map);
 	return (new_map);
-	
 }
 
 char	**ft_delindex(char **split, int i)
@@ -80,12 +79,12 @@ char	**ft_delindex(char **split, int i)
 	return (new);
 }
 
-char **del_nfirst(int n, char **map)
+char	**del_nfirst(int n, char **map)
 {
-	char **new_map;
-	int i;
-	int j;
-	int old_map_len;
+	char	**new_map;
+	int		i;
+	int		j;
+	int		old_map_len;
 
 	i = 0;
 	j = n;
@@ -99,16 +98,15 @@ char **del_nfirst(int n, char **map)
 	}
 	free_tab(map);
 	return (new_map);
-	
 }
 
-char **del_blank(char **map)
+char	**del_blank(char **map)
 {
-	char **new_map;
-	int i;
-	int j;
-	int n;
-	int old_map_len;
+	char	**new_map;
+	int		i;
+	int		j;
+	int		n;
+	int		old_map_len;
 
 	n = count_blank(map);
 	i = 0;
@@ -123,5 +121,4 @@ char **del_blank(char **map)
 	}
 	free_tab(map);
 	return (new_map);
-	
 }
