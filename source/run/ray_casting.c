@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:16:18 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:00:08 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:33:58 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	update_door_vars(t_ray *ray, t_data *data)
 			ray->aiming_at_open_door = 1;
 	}
 	if (BONUS && (data->map[ray->mapx][ray->mapy] == 'D'
-			|| data->map[ray->mapx][ray->mapy] == 'O'))
+		|| data->map[ray->mapx][ray->mapy] == 'O'))
 	{
 		ray->door_coord_x = ray->mapx;
 		ray->door_coord_y = ray->mapy;

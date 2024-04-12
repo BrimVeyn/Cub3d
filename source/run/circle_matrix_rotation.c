@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/11 09:44:31 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:11:43 by bvan-pae         ###   ########.fr       */
+/*   Created: 2024/04/12 15:39:20 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/12 15:39:21 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,19 @@ void	add_circle_border(t_data *data)
 	return ;
 }
 
+void circle_helper(t_data *data, int *x, double *cs, int *new)
+{
+	t_minimap	*m;
+
+	m = data->minimap;
+	new[0] = ((x[0] - m->center_x) * cs[0]) - ((x[1] - m->center_y)
+			* cs[1]) + m->center_x;
+	new[1] = ((x[0] - m->center_x) * cs[1]) + ((x[1] - m->center_y)
+			* cs[0]) + m->center_y;
+	m->rotated_matrix[m->draw_size - x[0] - 1][m->draw_size - x[1] 
+		- 1] = m->filled_circle_matrix[new[0]][new[1]];
+}
+
 void	circle_matrix_rotation(t_data *data, double angle)
 {
 	t_minimap	*m;
@@ -71,14 +84,7 @@ void	circle_matrix_rotation(t_data *data, double angle)
 		while (++x[1] < m->draw_size)
 		{
 			if (m->circle_matrix[x[0]][x[1]] != 0)
-			{
-				new[0] = ((x[0] - m->center_x) * cs[0]) - ((x[1] - m->center_y)
-						* cs[1]) + m->center_x;
-				new[1] = ((x[0] - m->center_x) * cs[1]) + ((x[1] - m->center_y)
-						* cs[0]) + m->center_y;
-				m->rotated_matrix[m->draw_size - x[0] - 1][m->draw_size - x[1]
-					- 1] = m->filled_circle_matrix[new[0]][new[1]];
-			}
+				circle_helper(data, x, cs, new);
 			else
 				m->rotated_matrix[m->draw_size - x[0] - 1][m->draw_size - x[1]
 					- 1] = 0;
