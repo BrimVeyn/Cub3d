@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:03:12 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:03:12 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:38:12 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,13 @@ typedef struct s_minimap
 	int			circle_radius;
 	int			center_x;
 	int			center_y;
+	int			curr_pos_x;
+	int			curr_pos_y;
+	int			map_width;
+	int			map_height;
+	int			x;
+	int			y;
+	int			area;
 	double		angle;
 
 }				t_minimap;
@@ -279,6 +286,7 @@ void			init_e(t_data *data);
 
 void	display(char **map); // fonction utilitaire a supprimer
 void			calcul_hud(t_data *data);
+void	mm(t_data *data, int i, int j, int color);
 
 void			ray_cast(t_data *data);
 

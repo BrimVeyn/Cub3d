@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:04:19 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:09:00 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:38:16 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,6 @@ int	*xpm_to_tab(t_data *data, int *width, int *height, char *path)
 
 void	run_map(t_data *data)
 {
-	data->imgs = ft_calloc(2, sizeof(t_img_data));
-	data->ray = ft_calloc(2, sizeof(t_ray));
-	data->player = ft_calloc(2, sizeof(t_player));
-	data->minimap = ft_calloc(2, sizeof(t_minimap));
-	data->line = ft_calloc(2, sizeof(t_line));
-	data->minimap_img = ft_calloc(2, sizeof(t_img_data));
 	init_data(data);
 	init_minimap_circle(data);
 	data->mlx = mlx_init();
