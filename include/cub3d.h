@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:57:43 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 11:13:14 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:59:29 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,12 +135,14 @@ typedef struct s_img_data {
 } t_img_data;
 
 typedef struct s_line {
+	int lineheight;
 	int x;
 	int y;
 	int y0;
 	int y1;
 	int tex_x;
 	int tex_y;
+	int tex_color;
 	int span;
 	int off;
 } t_line;
@@ -180,6 +182,7 @@ typedef struct s_hud
 
 typedef struct	s_ray
 {
+	int		x;
 	double	camerax;
 	double	raydirx;
 	double	raydiry;
@@ -188,6 +191,7 @@ typedef struct	s_ray
 	double	sidedistx;
 	double	sidedisty;
 	double	perpwalldist;
+	double	wall_x;
 	int		mapy;
 	int		mapx;
 	int		stepx;
@@ -195,6 +199,7 @@ typedef struct	s_ray
 	int		side;
 	int		hit;
 	int		aiming_at_door;
+	int		aiming_at_open_door;
 	int		door_coord_x;
 	int		door_coord_y;
 
@@ -264,6 +269,14 @@ int count_blank(char **map);
 
 void display(char **map); // fonction utilitaire a supprimer
 void calcul_hud (t_data *data);
+
+
+void ray_cast(t_data *data);
+
+void init_ray_dists(t_ray *ray, t_data *data);
+void init_ray_vars(t_ray *ray, t_data *data);
+void init_line_vars(t_line *line, t_data *data, t_ray *ray);
+void init_ray_wall_x(t_ray *ray, t_data *data);
 
 int *init_minimap_colors(t_data *data);
 void init_data(t_data *data);

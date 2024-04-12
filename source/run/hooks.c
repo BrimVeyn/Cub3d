@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 10:45:32 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 11:23:27 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 13:09:14 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void door_handler(t_data *data)
 	{
 		data->map[data->ray->door_coord_x][data->ray->door_coord_y] = 'O';
 	}
-	if (data->ray->aiming_at_door == -1 && data->map[data->ray->door_coord_x][data->ray->door_coord_y] == 'O')
+	if (data->ray->aiming_at_open_door == 1 && data->map[data->ray->door_coord_x][data->ray->door_coord_y] == 'O')
 	{
 		data->map[data->ray->door_coord_x][data->ray->door_coord_y] = 'D';
 	}
