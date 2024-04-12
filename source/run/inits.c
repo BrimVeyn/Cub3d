@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:22:18 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 16:12:58 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:44:50 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,15 @@ void init_imgs(t_data *data)
 
 	data->minimap_img = ft_calloc(2, sizeof(t_img_data));
 	data->minimap_img->img = mlx_xpm_file_to_image(data->mlx, "./textures/head.xpm", &data->tex_size, &data->tex_size);
-	data->textures = ft_calloc(5, sizeof(int *));
+	data->textures = ft_calloc(5 + BONUS, sizeof(int *));
     if (!data->textures)
         display_error("Cub3d: Error allocating textures buffer\n", data);
     data->textures[NORTH] = xpm_to_tab(data, &data->tex_size, &data->tex_size, data->texture_paths[NORTH]);
     data->textures[SOUTH] = xpm_to_tab(data, &data->tex_size, &data->tex_size, data->texture_paths[SOUTH]);
     data->textures[EAST] = xpm_to_tab(data, &data->tex_size, &data->tex_size, data->texture_paths[EAST]);
     data->textures[WEST] = xpm_to_tab(data, &data->tex_size, &data->tex_size, data->texture_paths[WEST]);
+	if (BONUS)
+		data->textures[DOOR] = xpm_to_tab(data, &data->tex_size, &data->tex_size, DOOR_PATH);
 	calcul_hud(data);
 }
 
