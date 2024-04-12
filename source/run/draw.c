@@ -18,15 +18,16 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	if (x < WIDTH && y < HEIGHT && y > 0 && x > 0)
 	{
-		dst = data->imgs->addr + (y * data->imgs->line_lengh + x * (data->imgs->bpp / 8));
+		dst = data->imgs->addr + (y * data->imgs->line_lengh + x
+				* (data->imgs->bpp / 8));
 		*(unsigned int *)dst = color;
 	}
 }
 
-void reset_screen(t_data *data)
+void	reset_screen(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < HEIGHT)

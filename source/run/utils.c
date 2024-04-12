@@ -12,9 +12,9 @@
 
 #include "../../include/cub3d.h"
 
-int get_map_width(t_data *data)
+int	get_map_width(t_data *data)
 {
-	int  i;
+	int	i;
 
 	i = 0;
 	while (data->map[0][i])
@@ -22,12 +22,12 @@ int get_map_width(t_data *data)
 	return (i);
 }
 
-int get_map_height(t_data *data)
+int	get_map_height(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(data->map[i])
+	while (data->map[i])
 		i++;
 	return (i);
 }

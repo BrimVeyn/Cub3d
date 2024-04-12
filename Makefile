@@ -15,6 +15,7 @@ SRC 			:= source/main.c \
 				   source/parsing/tab_manip.c \
 				   source/parsing/get_texture_paths.c \
 				   source/parsing/free.c \
+				   source/run/init_player.c \
 				   source/run/draw.c \
 				   source/run/hooks.c \
 				   source/run/minimap_display.c \
@@ -23,6 +24,11 @@ SRC 			:= source/main.c \
 				   source/run/inits.c \
 				   source/run/inits_two.c \
 				   source/run/utils.c \
+				   source/mouvements/mouvements.c \
+				   source/animations/fps.c \
+				   source/animations/hud.c \
+				   source/mouvements/mouse.c \
+				   source/run/key_handler.c
 
 GCL				:= git clone
 MINILIBX_SRC	:= https://github.com/42Paris/minilibx-linux.git
@@ -34,6 +40,8 @@ OBJ 			:= $(SRC:source/%.c=objects/%.o)
 OBJDIR			:= objects
 PARSING_DIR		:= parsing
 RUN_DIR			:= run
+ANIMATIONS_DIR	:= animations
+MOUVEMENTS_DIR	:= mouvements
 
 MINIFLAGS		:= -lX11 -lXext -lm -Ofast $(MINILIBX)
 
@@ -76,7 +84,7 @@ $(MINILIBX):
 	@if [ ! -d $(MINILIBX_PATH) ]; then $(GCL) $(MINILIBX_SRC) $(MINILIBX_PATH); make -C $(MINILIBX_PATH); fi;
 
 $(OBJDIR):
-	@mkdir -p $(OBJDIR) $(OBJDIR)/$(PARSING_DIR) $(OBJDIR)/$(RUN_DIR)
+	@mkdir -p $(OBJDIR) $(OBJDIR)/$(PARSING_DIR) $(OBJDIR)/$(RUN_DIR) $(OBJDIR)/$(ANIMATIONS_DIR) $(OBJDIR)/$(MOUVEMENTS_DIR)
 
 $(LIBFT):
 	@make --no-print-directory -C libftprintf/

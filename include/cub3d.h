@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:57:43 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 11:13:14 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:41:39 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,10 @@ int check_onedir(t_data *data);
 int check_multimap(t_data *data);
 int get_llength(char **map);
 int count_blank(char **map);
-
+void init_n(t_data *data);
+void init_s(t_data *data);
+void init_w(t_data *data);
+void init_e(t_data *data);
 //-------------------------------------------------
 
 void display(char **map); // fonction utilitaire a supprimer
@@ -294,4 +297,20 @@ int key_handler(int key, t_data *data);
 int key_release_handler(int keycode, t_data *data);
 int *xpm_to_tab( t_data *data, int *width, int *height, char *path);
 
+void put_to_windows_without(t_data *data, t_img_data img, int offsetx, int offsety);
+void calcul_hud (t_data *data);
+void gun_animation(t_data *data);
+
+int	get_time(void);
+void draw_crosshair(t_data *data, int color, int r);
+void animation(t_animation *walk);
+void player_pos_changed(t_data *data);
+void init_animations(t_data *data);
+void view_changed(t_data *data);
+int handle_mouvement(int x, int y, t_data *data);
+int handle_mouse(int keycode, int x, int y, t_data *data);
+int	key_handler(int keycode, t_data *data);
+int	key_release_handler(int keycode, t_data *data);
+void	door_handler(t_data *data);
+void	close_and_exit(t_data *data);
 #endif
