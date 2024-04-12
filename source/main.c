@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:59:17 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 16:10:50 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 11:48:35 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int parse_map(int map_fd, t_data *data)
 void ray_cast(t_data *data)
 {
 	int x;
-	int hit;
-	
+
 	x = 0;
 	t_ray *ray = data->ray;
 	t_line *line = data->line;
@@ -69,7 +68,7 @@ void ray_cast(t_data *data)
 		ray->deltadistx = fabs(1 / ray->raydirx);
 		ray->deltadisty = fabs(1 / ray->raydiry);
 
-		hit = 0;
+		ray->hit = 0;
 
 		if (ray->raydirx < 0)
 		{
@@ -93,7 +92,7 @@ void ray_cast(t_data *data)
 			ray->sidedisty = (ray->mapy + 1.0 - data->player->posy) * ray->deltadisty;
 		}
 
-		while (hit == 0)
+		while (ray->hit == 0)
 		{
 			if (ray->sidedistx < ray->sidedisty)
 			{
@@ -107,11 +106,12 @@ void ray_cast(t_data *data)
 				ray->mapy += ray->stepy;
 				ray->side = 1;
 			}
+			if (data->map[ray->mapx][ray->mapy] == 'O' && x == WIDTH * 0.5f)
+				ray->aiming_at_door = -1;
 			if (data->map[ray->mapx][ray->mapy] == '1')
-            {
-				// printf("rayx = %d, rayy = %d\n", ray->mapx, ray->mapy);
-				hit = 1;
-            }
+				ray->hit = 1;
+			else if (BONUS && data->map[ray->mapx][ray->mapy] == 'D')
+				ray->hit = 2;
 		}
 
 		if (ray->side == 0)
@@ -125,12 +125,6 @@ void ray_cast(t_data *data)
 			ray->side = 2;
 		if (ray->side == 0 && ray->stepx == 1)
 			ray->side = 3;
-
-		// if (ray->side == EAST || ray->side == WEST)
-		// 	wall_x = data->player->posy + ray->perpwalldist * ray->raydiry;
-		// else
-		// 	wall_x = data->player->posx + ray->perpwalldist * ray->raydirx;
-		//
 		if (ray->side == 0 || ray->side == 3)
 			wall_x = data->player->posy + ray->perpwalldist * ray->raydiry;
 		else
@@ -162,12 +156,19 @@ void ray_cast(t_data *data)
 		line->tex_x = (wall_x * data->tex_size);
 		line->span = data->tex_size;
 		line->off = 0;
+		if (x == WIDTH * 0.5f && ray->hit == 2 && ray->perpwalldist < 1)
+        {
+			ray->aiming_at_door = 1;
+			ray->door_coord_x = ray->mapx;
+			ray->door_coord_y = ray->mapy;
+        }
+		else if (ray->aiming_at_door != -1 && ((x == WIDTH * 0.5f && ray->hit == 1) || (x == WIDTH * 0.5f && ray->hit == 2 && ray->perpwalldist > 1)))
+			ray->aiming_at_door = 0;
 		if (line->y >= HEIGHT - 1)
 		{
 			line->y0 = ((float)data->tex_size * 0.5f) - ((ray->perpwalldist * data->tex_size) * 0.5f);
 			line->y1 = ((float)data->tex_size * 0.5f) + ((ray->perpwalldist * data->tex_size) * 0.5f);
 			line->span = line->y1 - line->y0;
-			// printf("y0 = %d\n", line->span);
 			line->off = line->y0;
 			line->y0 = drawstart;
 			line->y1 = drawend;
@@ -176,6 +177,8 @@ void ray_cast(t_data *data)
         {
 			line->tex_y = ((((float)y - (float)line->y0) / ((float)line->y1 - (float)line->y0)) * line->span + line->off);
 			int tex_color = data->textures[ray->side][line->tex_y * data->tex_size + line->tex_x];
+			if (BONUS && ray->hit == 2)
+				tex_color = data->textures[DOOR][line->tex_y * data->tex_size + line->tex_x];
 			my_mlx_pixel_put(data, x, y, tex_color);
         }
 
@@ -226,26 +229,31 @@ void player_pos_changed(t_data *data)
 		speed_ajustement = MOVESPEED * (60 / data->fps->fps_number);
 	}
 	
-	if (p->has_moved_y == 1 && data->map[(int)(p->posx + p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy + p->diry * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
+	if (p->has_moved_y == 1 && data->map[(int)(p->posx + p->dirx * speed_ajustement)][(int)(p->posy + p->diry * speed_ajustement)] != '1' && 
+		(BONUS == 0 || (data->map[(int)(p->posx + p->dirx * speed_ajustement)][(int)(p->posy + p->diry * speed_ajustement)]) != 'D'))
 	{
 		animation(data->walk_animation);
 		p->posx = p->posx + p->dirx * speed_ajustement;
 		p->posy = p->posy + p->diry * speed_ajustement;
 	}
-	if (p->has_moved_y == -1 && data->map[(int)(p->posx - p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy - p->diry * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
+	if (p->has_moved_y == -1 && data->map[(int)(p->posx - p->dirx * speed_ajustement)][(int)(p->posy - p->diry * speed_ajustement)] != '1' &&
+		(BONUS == 0 || data->map[(int)(p->posx - p->dirx * speed_ajustement)][(int)(p->posy - p->diry * speed_ajustement)] != 'D' ))
+
 	{
 		animation(data->walk_animation);
 		p->posx = p->posx - p->dirx * speed_ajustement;
 		p->posy = p->posy - p->diry * speed_ajustement;
 
 	}
-	if (p->has_moved_x == 1 && data->map[(int)(p->posx + p->diry * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy - p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
+	if (p->has_moved_x == 1 && data->map[(int)(p->posx + p->diry * speed_ajustement)][(int)(p->posy - p->dirx * speed_ajustement)] != '1' &&
+		(BONUS == 0 || data->map[(int)(p->posx + p->diry * speed_ajustement)][(int)(p->posy - p->dirx * speed_ajustement)] != 'D' ))
 	{
 		animation(data->walk_animation);
 		p->posx = p->posx + p->diry * speed_ajustement;
 		p->posy = p->posy - p->dirx * speed_ajustement;
 	}
-	if (p->has_moved_x == -1 && data->map[(int)(p->posx - p->diry * (MOVESPEED * (60 / data->fps->fps_number)))][(int)(p->posy + p->dirx * (MOVESPEED * (60 / data->fps->fps_number)))] != '1')
+	if (p->has_moved_x == -1 && data->map[(int)(p->posx - p->diry * speed_ajustement)][(int)(p->posy + p->dirx * speed_ajustement)] != '1' && 
+		(BONUS == 0 || data->map[(int)(p->posx - p->diry * speed_ajustement)][(int)(p->posy + p->dirx * speed_ajustement)] != 'D' ))
 	{
 		animation(data->walk_animation);
 		p->posx = p->posx - p->diry * speed_ajustement;
@@ -339,13 +347,16 @@ int ray_loop(void *param)
 	reset_screen(data);
 	init_ray(data);
 	ray_cast(data);
-	display_minimap(data);
-	draw_crosshair(data, 0xFFFFFF, 5);
-	draw_crosshair(data, 0xFFFFFF, 4);
-	
-	gun_animation(data);
+	if (BONUS)
+    {
+		display_minimap(data);
+		draw_crosshair(data, 0xFFFFFF, 5);
+		draw_crosshair(data, 0xFFFFFF, 4);
+		gun_animation(data);
+    }
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->window, data->minimap_img->img, 30 + data->minimap->draw_size / 2, 30 + data->minimap->draw_size / 2);
+	if (BONUS)
+		mlx_put_image_to_window(data->mlx, data->window, data->minimap_img->img, 30 + data->minimap->draw_size / 2, 30 + data->minimap->draw_size / 2);
 	mlx_set_font(data->mlx, data->window, "8x16");
 	data->fps->fps_number = 1000.0 / (get_time() - data->fps->old_time);
 	char *fps = ft_sprintf("fps: %d", (int)data->fps->fps_number);
