@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 10:45:32 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 10:24:42 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 11:23:27 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,24 @@ int	close_window(t_data *data)
 	return (0);
 }
 
+void door_handler(t_data *data)
+{
+	if (data->ray->aiming_at_door && data->map[data->ray->door_coord_x][data->ray->door_coord_y] == 'D')
+	{
+		data->map[data->ray->door_coord_x][data->ray->door_coord_y] = 'O';
+	}
+	if (data->ray->aiming_at_door == -1 && data->map[data->ray->door_coord_x][data->ray->door_coord_y] == 'O')
+	{
+		data->map[data->ray->door_coord_x][data->ray->door_coord_y] = 'D';
+	}
+	printf("is_aiming = %d\n", data->ray->aiming_at_door);
+	printf("is_aiming at = %c\n", data->map[data->ray->door_coord_x][data->ray->door_coord_y]);
+}
+
 int key_handler(int keycode, t_data *data)
 {
+	if (keycode == E_KEY)
+		door_handler(data);
 	if (keycode == ARROW_LEFT)
 		data->player->camera_moved_x = 1;
 	if (keycode == ARROW_RIGHT)

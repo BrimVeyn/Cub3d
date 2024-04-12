@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:57:43 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 16:06:02 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 11:13:14 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 #define OFFSET_X 40
 #define OFFSET_Y 40
 
+#define DOOR_PATH "./textures/blackstone.xpm"
+
 #ifndef BONUS
 #define BONUS 0
 #endif
@@ -44,17 +46,18 @@
 #include <unistd.h>
 
 enum {
-  DIR_NO,
-  DIR_SO,
-  DIR_WE,
-  DIR_EA,
+	DIR_NO,
+	DIR_SO,
+	DIR_WE,
+	DIR_EA,
 };
 
 enum {
-  NORTH,
-  SOUTH,
-  EAST,
-  WEST,
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	DOOR,
 };
 
 enum
@@ -66,8 +69,8 @@ enum
 };
 
 enum {
-  C_F,
-  C_C,
+	C_F,
+	C_C,
 };
 
 enum {
@@ -76,27 +79,28 @@ enum {
 };
 
 enum {
-  PLUS = 61,
-  MINUS = 45,
-  WHEEL_DOWN = 5,
-  W_KEY = 119,
-  A_KEY = 97,
-  S_KEY = 115,
-  D_KEY = 100,
-  P_KEY = 112,
-  ARROW_LEFT = 65361,
-  ARROW_UP = 65362,
-  ARROW_RIGHT = 65363,
-  ARROW_DOWN = 65364,
-  LEFT = 1,
-  UP = 2,
-  RIGHT = 3,
-  DOWN = 4,
-  X = 0,
-  Y = 1,
-  ESCAPE = 65307,
-  PLEFT = 91,
-  PRIGHT = 93,
+	PLUS = 61,
+	MINUS = 45,
+	WHEEL_DOWN = 5,
+	W_KEY = 119,
+	A_KEY = 97,
+	S_KEY = 115,
+	D_KEY = 100,
+	P_KEY = 112,
+	E_KEY = 101, 
+	ARROW_LEFT = 65361,
+	ARROW_UP = 65362,
+	ARROW_RIGHT = 65363,
+	ARROW_DOWN = 65364,
+	LEFT = 1,
+	UP = 2,
+	RIGHT = 3,
+	DOWN = 4,
+	X = 0,
+	Y = 1,
+	ESCAPE = 65307,
+	PLEFT = 91,
+	PRIGHT = 93,
 };
 
 //--------------------STRUCT-----------------------
@@ -189,6 +193,10 @@ typedef struct	s_ray
 	int		stepx;
 	int		stepy;
 	int		side;
+	int		hit;
+	int		aiming_at_door;
+	int		door_coord_x;
+	int		door_coord_y;
 
 }				t_ray;
 
