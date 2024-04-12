@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   inits_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:57:46 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 14:58:54 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:33:13 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+void	init_helper(t_line *line, t_data *data, t_ray *ray)
+{
+	line->y = line->y1 - line->y0;
+	line->x = ray->x;
+	line->tex_x = (ray->wall_x * data->tex_size);
+	line->span = data->tex_size;
+	line->off = 0;
+}
 void	init_line_vars(t_line *line, t_data *data, t_ray *ray)
 {
 	line->lineheight = (int)(HEIGHT / ray->perpwalldist);
@@ -23,11 +31,7 @@ void	init_line_vars(t_line *line, t_data *data, t_ray *ray)
 		+ data->walk_animation->offset;
 	if (line->y1 >= HEIGHT)
 		line->y1 = HEIGHT - 1;
-	line->y = line->y1 - line->y0;
-	line->x = ray->x;
-	line->tex_x = (ray->wall_x * data->tex_size);
-	line->span = data->tex_size;
-	line->off = 0;
+	init_helper(line, data, ray);
 	if (ray->x == WIDTH * 0.5f && ray->hit == 2 && ray->perpwalldist < 1)
 		ray->aiming_at_door = 1;
 	else if (ray->aiming_at_door != -1 && ((ray->x == WIDTH * 0.5f
