@@ -12,13 +12,15 @@
 
 #include "../../include/cub3d.h"
 
-void init_line_vars(t_line *line, t_data *data, t_ray *ray)
+void	init_line_vars(t_line *line, t_data *data, t_ray *ray)
 {
 	line->lineheight = (int)(HEIGHT / ray->perpwalldist);
-	line->y0 = (-line->lineheight / 2 + HEIGHT / 2) + data->walk_animation->offset;
+	line->y0 = (-line->lineheight / 2 + HEIGHT / 2)
+		+ data->walk_animation->offset;
 	if (line->y0 < 0)
 		line->y0 = 0;
-	line->y1 = (line->lineheight / 2 + HEIGHT / 2) + data->walk_animation->offset;
+	line->y1 = (line->lineheight / 2 + HEIGHT / 2)
+		+ data->walk_animation->offset;
 	if (line->y1 >= HEIGHT)
 		line->y1 = HEIGHT - 1;
 	line->y = line->y1 - line->y0;
@@ -28,16 +30,21 @@ void init_line_vars(t_line *line, t_data *data, t_ray *ray)
 	line->off = 0;
 	if (ray->x == WIDTH * 0.5f && ray->hit == 2 && ray->perpwalldist < 1)
 		ray->aiming_at_door = 1;
-	else if (ray->aiming_at_door != -1 && ((ray->x == WIDTH * 0.5f && ray->hit == 1) || (ray->x == WIDTH * 0.5f && ray->hit == 2 && ray->perpwalldist > 1)))
+	else if (ray->aiming_at_door != -1 && ((ray->x == WIDTH * 0.5f
+				&& ray->hit == 1) || (ray->x == WIDTH * 0.5f && ray->hit == 2
+				&& ray->perpwalldist > 1)))
 		ray->aiming_at_door = 0;
 	if (line->y >= HEIGHT - 1)
 	{
-		line->span = (((float)data->tex_size * 0.5f) + ((ray->perpwalldist * data->tex_size) * 0.5f)) - (((float)data->tex_size * 0.5f) - ((ray->perpwalldist * data->tex_size) * 0.5f));
-		line->off = ((float)data->tex_size * 0.5f) - ((ray->perpwalldist * data->tex_size) * 0.5f);
+		line->span = (((float)data->tex_size * 0.5f) + ((ray->perpwalldist
+						* data->tex_size) * 0.5f)) - (((float)data->tex_size
+					* 0.5f) - ((ray->perpwalldist * data->tex_size) * 0.5f));
+		line->off = ((float)data->tex_size * 0.5f) - ((ray->perpwalldist
+					* data->tex_size) * 0.5f);
 	}
 }
 
-void init_ray_wall_x(t_ray *ray, t_data *data)
+void	init_ray_wall_x(t_ray *ray, t_data *data)
 {
 	if (ray->side == 0)
 		ray->perpwalldist = (ray->sidedistx - ray->deltadistx);
@@ -54,19 +61,19 @@ void init_ray_wall_x(t_ray *ray, t_data *data)
 	ray->wall_x -= floor(ray->wall_x);
 }
 
-void init_ray_vars(t_ray *ray, t_data *data)
+void	init_ray_vars(t_ray *ray, t_data *data)
 {
-	ray->camerax = 2 * ray->x / (double) WIDTH - 1;
+	ray->camerax = 2 * ray->x / (double)WIDTH - 1;
 	ray->raydirx = data->player->dirx + data->player->planex * ray->camerax;
 	ray->raydiry = data->player->diry + data->player->planey * ray->camerax;
-	ray->mapx = (int) data->player->posx;
-	ray->mapy = (int) data->player->posy;
+	ray->mapx = (int)data->player->posx;
+	ray->mapy = (int)data->player->posy;
 	ray->deltadistx = fabs(1 / ray->raydirx);
 	ray->deltadisty = fabs(1 / ray->raydiry);
 	ray->hit = 0;
 }
 
-void init_ray_dists(t_ray *ray, t_data *data)
+void	init_ray_dists(t_ray *ray, t_data *data)
 {
 	if (ray->raydirx < 0)
 	{
@@ -76,9 +83,9 @@ void init_ray_dists(t_ray *ray, t_data *data)
 	else
 	{
 		ray->stepx = 1;
-		ray->sidedistx = (ray->mapx + 1.0 - data->player->posx) * ray->deltadistx;
+		ray->sidedistx = (ray->mapx + 1.0 - data->player->posx)
+			* ray->deltadistx;
 	}
-
 	if (ray->raydiry < 0)
 	{
 		ray->stepy = -1;
@@ -87,6 +94,7 @@ void init_ray_dists(t_ray *ray, t_data *data)
 	else
 	{
 		ray->stepy = 1;
-		ray->sidedisty = (ray->mapy + 1.0 - data->player->posy) * ray->deltadisty;
+		ray->sidedisty = (ray->mapy + 1.0 - data->player->posy)
+			* ray->deltadisty;
 	}
 }

@@ -12,9 +12,9 @@
 
 #include "../../include/cub3d.h"
 
-int is_ws(char *str)
+int	is_ws(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -26,19 +26,19 @@ int is_ws(char *str)
 	return (TRUE);
 }
 
-int count_blank(char **map)
+int	count_blank(char **map)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (is_ws(map[i]) == TRUE)
 		i++;
 	return (i);
 }
 
-int ws_count(char *str)
+int	ws_count(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
@@ -58,18 +58,18 @@ int	ft_tablen(char **tab)
 	return (i);
 }
 
-int get_llength(char **map)
+int	get_llength(char **map)
 {
-	int i;
-	int j;
-	int count;
-	
+	int	i;
+	int	j;
+	int	count;
+
 	i = 0;
 	count = 0;
 	while (map[i])
 	{
 		j = 0;
-		while(map[i][j])
+		while (map[i][j])
 			j++;
 		if (j > count)
 			count = j;

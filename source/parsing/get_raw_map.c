@@ -23,10 +23,10 @@ char	*ft_realloc(char *ptr, size_t size)
 	return (self);
 }
 
-int count_line(char *map)
+int	count_line(char *map)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	count = 0;
 	i = 0;
@@ -39,12 +39,12 @@ int count_line(char *map)
 	return (count + 1);
 }
 
-void fill_map(char **splitted_map, char *map)
+void	fill_map(char **splitted_map, char *map)
 {
-	int s;
-	int e;
-	int i;
-	int k;
+	int	s;
+	int	e;
+	int	i;
+	int	k;
 
 	i = 0;
 	s = 0;
@@ -53,25 +53,26 @@ void fill_map(char **splitted_map, char *map)
 	while (map[i])
 	{
 		if (map[i] == '\n')
-        {
+		{
 			e = i;
 			splitted_map[k] = ft_substr(map, s, e - s);
 			k++;
 			s = i + 1;
-        }
+		}
 		i++;
 	}
 }
 
-char **cub_split(char *map)
+char	**cub_split(char *map)
 {
-	char **splitted_map = ft_calloc(count_line(map), sizeof(char *));
+	char	**splitted_map;
+
+	splitted_map = ft_calloc(count_line(map), sizeof(char *));
 	fill_map(splitted_map, map);
 	return (splitted_map);
 }
 
-
-void	get_raw_map(int map_fd, t_data* data)
+void	get_raw_map(int map_fd, t_data *data)
 {
 	int		bytes_read;
 	int		read_size;

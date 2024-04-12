@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-int ft_directioncmp(char *str)
+int	ft_directioncmp(char *str)
 {
 	if (!ft_strncmp(str, "NO", 2))
 		return (DIR_NO);
@@ -25,10 +25,10 @@ int ft_directioncmp(char *str)
 	return (ERROR);
 }
 
-int check_perms(t_data *data)
+int	check_perms(t_data *data)
 {
-	int tmp_fd;
-	int i;
+	int	tmp_fd;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -44,12 +44,12 @@ int check_perms(t_data *data)
 	return (TRUE);
 }
 
-int get_texture_paths(t_data *data)
+int	get_texture_paths(t_data *data)
 {
-	int i;
-	int off;
-	int count;
-	int dir;
+	int	i;
+	int	off;
+	int	count;
+	int	dir;
 
 	i = 0;
 	count = 0;
@@ -59,15 +59,16 @@ int get_texture_paths(t_data *data)
 		off = ws_count(data->map[i]);
 		dir = ft_directioncmp(&data->map[i][off]);
 		if (dir != ERROR)
-        {
+		{
 			off += ws_count(&data->map[i][off + 2]);
 			if (data->texture_paths[dir])
-				return(ERROR);
-			data->texture_paths[dir] = ft_substr(data->map[i], off + 2, ft_strlen(data->map[i]) - 3);
+				return (ERROR);
+			data->texture_paths[dir] = ft_substr(data->map[i], off + 2,
+					ft_strlen(data->map[i]) - 3);
 			data->map = ft_delindex(data->map, i);
 			count++;
 			i = 0;
-        }
+		}
 		else
 			i++;
 	}
@@ -75,4 +76,3 @@ int get_texture_paths(t_data *data)
 		return (ERROR);
 	return (TRUE);
 }
-

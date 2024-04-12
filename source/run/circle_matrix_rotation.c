@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   circle_matrix_rotation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:44:31 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 15:56:51 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:54:54 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void draw_border(t_minimap *m, int x, int y)
+static void	draw_border(t_minimap *m, int x, int y)
 {
 	if (x - 1 > 0 && m->circle_matrix[x - 1][y] == 0)
 		m->circle_matrix[x - 1][y] = 2;
@@ -32,11 +32,11 @@ static void draw_border(t_minimap *m, int x, int y)
 		m->circle_matrix[x + 2][y] = 2;
 }
 
-void add_circle_border(t_data *data)
+void	add_circle_border(t_data *data)
 {
-	t_minimap *m;
-	int x;
-	int y;
+	t_minimap	*m;
+	int			x;
+	int			y;
 
 	m = data->minimap;
 	x = 0;
@@ -54,33 +54,35 @@ void add_circle_border(t_data *data)
 	return ;
 }
 
-void circle_matrix_rotation(t_data *data, double angle)
+void	circle_matrix_rotation(t_data *data, double angle)
 {
-	t_minimap *m = data->minimap;
-	double	sin_theta;
-	double	cos_theta;
-	int x;
-	int y;
+	t_minimap	*m;
+	double		cs[2];
+	int			x[2];
+	int			new[2];
 
-	x = 0;
-	sin_theta = sin(angle);
-	cos_theta = cos(angle);
-	while (x < m->draw_size)
+	m = data->minimap;
+	x[0] = -1;
+	cs[1] = sin(angle);
+	cs[0] = cos(angle);
+	while (++x[0] < m->draw_size)
 	{
-		y = 0;
-		while (y < m->draw_size)
+		x[1] = -1;
+		while (++x[1] < m->draw_size)
 		{
-			if (m->circle_matrix[x][y] != 0)
+			if (m->circle_matrix[x[0]][x[1]] != 0)
 			{
-				int new_x = ((x - m->center_x) * cos_theta) - ((y - m->center_y) * sin_theta) + m->center_x;
-				int new_y = ((x - m->center_x) * sin_theta) + ((y - m->center_y) * cos_theta) + m->center_y;
-				m->rotated_matrix[m->draw_size - x -1][m->draw_size - y -1] = m->filled_circle_matrix[new_x][new_y]; 
+				new[0] = ((x[0] - m->center_x) * cs[0]) - ((x[1] - m->center_y)
+						* cs[1]) + m->center_x;
+				new[1] = ((x[0] - m->center_x) * cs[1]) + ((x[1] - m->center_y)
+						* cs[0]) + m->center_y;
+				m->rotated_matrix[m->draw_size - x[0] - 1][m->draw_size - x[1]
+					- 1] = m->filled_circle_matrix[new[0]][new[1]];
 			}
 			else
-				m->rotated_matrix[m->draw_size - x - 1][m->draw_size - y- 1] = 0;
-			y++;
+				m->rotated_matrix[m->draw_size - x[0] - 1][m->draw_size - x[1]
+					- 1] = 0;
 		}
-		x++;
 	}
 	paint_minimap(data);
 }

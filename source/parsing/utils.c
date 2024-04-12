@@ -13,10 +13,10 @@
 #include "../../include/cub3d.h"
 #include <stdlib.h>
 
-int ft_reversecmp(char *str, char *cmp)
+int	ft_reversecmp(char *str, char *cmp)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = ft_strlen(str) - 1;
 	j = ft_strlen(cmp) - 1;
@@ -30,9 +30,9 @@ int ft_reversecmp(char *str, char *cmp)
 	return (TRUE);
 }
 
-int check_map(char *map)
+int	check_map(char *map)
 {
-	int fd;
+	int	fd;
 
 	fd = 0;
 	if (ft_reversecmp(map, ".cub") == ERROR)
@@ -55,9 +55,9 @@ int	ft_isws(char c)
 	return (ERROR);
 }
 
-int int_len(int n)
+int	int_len(int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (n)
