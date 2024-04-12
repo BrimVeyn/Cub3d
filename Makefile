@@ -23,6 +23,8 @@ SRC 			:= source/main.c \
 				   source/run/inits.c \
 				   source/run/inits_two.c \
 				   source/run/utils.c \
+				   source/run/ray_casting.c \
+				   source/run/inits_ray.c \
 
 GCL				:= git clone
 MINILIBX_SRC	:= https://github.com/42Paris/minilibx-linux.git
