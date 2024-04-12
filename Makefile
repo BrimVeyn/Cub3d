@@ -84,6 +84,6 @@ $(LIBFT):
 re: fclean all
 
 bonus:
-	@$(MAKE) BONUS_FLAGS="-D BONUS" $(NAME) --no-print-directory
+	@$(MAKE) BONUS="-D BONUS=1" $(NAME) --no-print-directory
 
 .PHONY: all clean fclean re bonus 

@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:35:13 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/05 10:44:34 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:37:18 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int ft_isdir(char c)
 
 int wrong_char(char c)
 {
+	if (c == 'D' && BONUS == 1)
+		return (TRUE);
 	if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '1' && c != '2' && c != '0')
 		return (ERROR);
 	return (TRUE);
@@ -82,7 +84,8 @@ int	check_onedir(t_data *data)
 				count++;
 			if (data->map[i][j] != '0' && data->map[i][j] != '1'
 				&& data->map[i][j] != 'N' && data->map[i][j] != 'S'
-				&& data->map[i][j] != 'E' && data->map[i][j] != 'W' && data->map[i][j] != ' ')
+				&& data->map[i][j] != 'E' && data->map[i][j] != 'W'
+				&& data->map[i][j] != ' ' && data->map[i][j] != 'D')
 					return (ERROR);
 			j++;
 		}
