@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   circle_matrix_rotation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
+/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:44:31 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 14:54:54 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:11:43 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

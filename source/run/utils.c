@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:57:13 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 10:19:42 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:38:32 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,10 @@ int	get_map_height(t_data *data)
 		i++;
 	return (i);
 }
+
+void	mm(t_data *data, int i, int j, int color)
+{
+	my_mlx_pixel_put(data, i, j, color);
+}
+
+
