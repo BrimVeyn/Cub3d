@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 15:04:19 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 13:26:16 by bvan-pae         ###   ########.fr       */
+/*   Created: 2024/04/22 13:34:15 by bvan-pae          #+#    #+#             */
+/*   Updated: 2024/04/22 13:34:16 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <X11/X.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void	display(char **map);
 void	print_strings(t_data *data);
@@ -99,6 +100,8 @@ void	run_map(t_data *data)
 	init_data(data);
 	init_minimap_circle(data);
 	data->mlx = mlx_init();
+	if (!data->mlx)
+		close_and_exit(data);
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "CUB3D");
 	data->imgs->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->imgs->addr = mlx_get_data_addr(data->imgs->img, &data->imgs->bpp,
