@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:25:16 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 10:39:39 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:28:07 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,22 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
+void	free_data_bis(t_data *data)
+{
+	free(data->hud);
+	free(data->minimap);
+	free(data->walk_animation);
+	free(data->fps);
+	free(data->line);
+	free(data->imgs);
+	free(data->player);
+	free(data->ray);
+	free(data->minimap_img);
+	free_tab(data->map);
+	free_texture(data->texture_paths);
+	free(data);
+}
+
 void	free_data(t_data *data)
 {
 	if (data->window)
@@ -65,16 +81,5 @@ void	free_data(t_data *data)
 		free(data->hud->frames);
 		free(data->minimap->colors);
     }
-	free(data->hud);
-	free(data->minimap);
-	free(data->walk_animation);
-	free(data->fps);
-	free(data->line);
-	free(data->imgs);
-	free(data->player);
-	free(data->ray);
-	free(data->minimap_img);
-	free_tab(data->map);
-	free_texture(data->texture_paths);
-	free(data);
+	free_data_bis(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture_paths.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
+/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:26:21 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 11:15:24 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:33:32 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,42 +45,44 @@ int	check_perms(t_data *data)
 	return (TRUE);
 }
 
+int get_texture_paths_loop(t_data *data, int *i, int *count)
+{
+	int off;
+	int dir;
+
+	off = ws_count(data->map[*i]);
+	dir = ft_directioncmp(&data->map[*i][off]);
+	if (dir != ERROR)
+	{
+		off += ws_count(&data->map[*i][off + 2]);
+		if (data->texture_paths[dir])
+			return (ERROR);
+		data->texture_paths[dir] = ft_substr(data->map[*i], off + 2,
+				ft_strlen(data->map[*i]) - 3);
+		data->map = ft_delindex(data->map, *i);
+		if (!data->map)
+			close_and_exit(data);
+		(*count)++;
+		*i = 0;
+	}
+	else
+		(*i)++;
+	return (TRUE);
+}
+
 int	get_texture_paths(t_data *data)
 {
 	int	i;
-	int	off;
 	int	count;
-	int	dir;
 
 	i = 0;
 	count = 0;
 	data->texture_paths = ft_calloc(5, sizeof(char *));
 	if (!data->texture_paths)
-	{
-		free(data->fps);
-		free(data);
-		exit(EXIT_FAILURE);
-	}
+		close_and_exit(data);
 	while (data->map[i])
-	{
-		off = ws_count(data->map[i]);
-		dir = ft_directioncmp(&data->map[i][off]);
-		if (dir != ERROR)
-		{
-			off += ws_count(&data->map[i][off + 2]);
-			if (data->texture_paths[dir])
-				return (ERROR);
-			data->texture_paths[dir] = ft_substr(data->map[i], off + 2,
-					ft_strlen(data->map[i]) - 3);
-			data->map = ft_delindex(data->map, i);
-			if (!data->map)
-				close_and_exit(data);
-			count++;
-			i = 0;
-		}
-		else
-			i++;
-	}
+		if (get_texture_paths_loop(data, &i, &count) == ERROR)
+			return (ERROR);
 	if (count != 4 || check_perms(data) == ERROR)
 		return (ERROR);
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:05:13 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 10:38:36 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:24:20 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,4 @@ void	door_handler(t_data *data)
 	{
 		data->map[data->ray->door_coord_x][data->ray->door_coord_y] = 'D';
 	}
-	printf("is_aiming = %d\n", data->ray->aiming_at_door);
-	printf("is_aiming at = %c\n",
-		data->map[data->ray->door_coord_x][data->ray->door_coord_y]);
 }

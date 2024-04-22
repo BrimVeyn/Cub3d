@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
+/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:04:19 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 11:20:38 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:26:16 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ int	parse_map(int map_fd, t_data *data)
 		display_error("Cube3d: Map is not closed\n", data);
 	if (check_multimap(data) == ERROR)
 		display_error("Cub3d: Multimap detected\n", data);
-	display(data->map);
-	display(data->texture_paths);
-	printf("F = %zu\n", data->colors[0]);
-	printf("C = %zu\n", data->colors[1]);
 	return (TRUE);
 }
 

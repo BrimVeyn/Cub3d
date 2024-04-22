@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:22:18 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 10:18:55 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:26:11 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	fill_player_position(t_data *data)
 	int	j;
 
 	i = 0;
-	display(data->map);
 	while (data->map[i])
 	{
 		j = 0;
