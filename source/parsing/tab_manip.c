@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:32:15 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 11:24:07 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:09:20 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**fill_blank(char **map)
 	while (i < len)
 	{
 		new_map[i++] = ft_calloc(llength + 1, sizeof(char));
-		if (!new_map[i])
+		if (!new_map[i - 1])
 			return(NULL);
 	}
 	fill_new_map(new_map, map, llength);
