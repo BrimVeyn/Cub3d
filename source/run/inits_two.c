@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:19:27 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 11:19:43 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:07:10 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	init_minimap_circle(t_data *data)
 				* m->minimap_size + 1, sizeof(int));
 		m->coord_matrix[idx++] = ft_calloc(m->minimap_scale * m->minimap_size
 				+ 1, sizeof(int));
-		if (!m->circle_matrix[idx] || !m->rotated_matrix[idx] || !m->filled_circle_matrix[idx] || !m->coord_matrix[idx])
-			close_and_exit(data);
+		// if (!m->circle_matrix[idx] || !m->rotated_matrix[idx] || !m->filled_circle_matrix[idx] || !m->coord_matrix[idx])
+		// 	close_and_exit(data);
 	}
 	draw_circle_matrix(data->minimap);
 	fill_circle_matrix(data);
