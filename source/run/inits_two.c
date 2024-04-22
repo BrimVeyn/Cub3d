@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:19:27 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 13:07:10 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:28:38 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	init_helper(t_data *data)
 	m->filled_circle_matrix = ft_calloc(m->minimap_size * m->minimap_scale + 1,
 			sizeof(int *));
 	m->colors = init_minimap_colors(data);
+	if (!m->circle_matrix || !m->coord_matrix || !m->rotated_matrix || !m->filled_circle_matrix || !m->colors)
+		close_and_exit(data);
 }
 
 void	init_minimap_circle(t_data *data)
@@ -49,10 +51,11 @@ void	init_minimap_circle(t_data *data)
 				+ 1, sizeof(int));
 		m->filled_circle_matrix[idx] = ft_calloc(m->minimap_scale
 				* m->minimap_size + 1, sizeof(int));
-		m->coord_matrix[idx++] = ft_calloc(m->minimap_scale * m->minimap_size
+		m->coord_matrix[idx] = ft_calloc(m->minimap_scale * m->minimap_size
 				+ 1, sizeof(int));
-		// if (!m->circle_matrix[idx] || !m->rotated_matrix[idx] || !m->filled_circle_matrix[idx] || !m->coord_matrix[idx])
-		// 	close_and_exit(data);
+		if (!m->circle_matrix[idx] || !m->rotated_matrix[idx] || !m->filled_circle_matrix[idx] || !m->coord_matrix[idx])
+			close_and_exit(data);
+		idx++;
 	}
 	draw_circle_matrix(data->minimap);
 	fill_circle_matrix(data);
