@@ -1,0 +1,1866 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_init.o",
+      "mlx_init.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_init.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_init.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_new_window.o",
+      "mlx_new_window.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_new_window.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_new_window.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_pixel_put.o",
+      "mlx_pixel_put.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_pixel_put.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_pixel_put.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_loop.o",
+      "mlx_loop.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_loop.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_loop.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_mouse_hook.o",
+      "mlx_mouse_hook.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_mouse_hook.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_mouse_hook.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_key_hook.o",
+      "mlx_key_hook.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_key_hook.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_key_hook.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_expose_hook.o",
+      "mlx_expose_hook.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_expose_hook.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_expose_hook.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_loop_hook.o",
+      "mlx_loop_hook.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_loop_hook.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_loop_hook.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_int_anti_resize_win.o",
+      "mlx_int_anti_resize_win.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_int_anti_resize_win.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_int_anti_resize_win.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_int_do_nothing.o",
+      "mlx_int_do_nothing.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_int_do_nothing.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_int_do_nothing.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_int_wait_first_expose.o",
+      "mlx_int_wait_first_expose.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_int_wait_first_expose.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_int_wait_first_expose.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_int_get_visual.o",
+      "mlx_int_get_visual.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_int_get_visual.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_int_get_visual.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_flush_event.o",
+      "mlx_flush_event.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_flush_event.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_flush_event.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_string_put.o",
+      "mlx_string_put.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_string_put.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_string_put.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_set_font.o",
+      "mlx_set_font.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_set_font.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_set_font.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_new_image.o",
+      "mlx_new_image.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_new_image.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_new_image.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_get_data_addr.o",
+      "mlx_get_data_addr.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_get_data_addr.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_get_data_addr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_put_image_to_window.o",
+      "mlx_put_image_to_window.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_put_image_to_window.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_put_image_to_window.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_get_color_value.o",
+      "mlx_get_color_value.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_get_color_value.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_get_color_value.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_clear_window.o",
+      "mlx_clear_window.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_clear_window.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_clear_window.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_xpm.o",
+      "mlx_xpm.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_xpm.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_xpm.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_int_str_to_wordtab.o",
+      "mlx_int_str_to_wordtab.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_int_str_to_wordtab.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_int_str_to_wordtab.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_destroy_window.o",
+      "mlx_destroy_window.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_destroy_window.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_destroy_window.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_int_param_event.o",
+      "mlx_int_param_event.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_int_param_event.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_int_param_event.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_int_set_win_event_mask.o",
+      "mlx_int_set_win_event_mask.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_int_set_win_event_mask.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_int_set_win_event_mask.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_hook.o",
+      "mlx_hook.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_hook.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_hook.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_rgb.o",
+      "mlx_rgb.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_rgb.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_rgb.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_destroy_image.o",
+      "mlx_destroy_image.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_destroy_image.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_destroy_image.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_mouse.o",
+      "mlx_mouse.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_mouse.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_mouse.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_screen_size.o",
+      "mlx_screen_size.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_screen_size.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_screen_size.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O3",
+      "-I/usr/include",
+      "-c",
+      "-o",
+      "obj/mlx_destroy_display.o",
+      "mlx_destroy_display.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/mlx_destroy_display.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/obj/mlx_destroy_display.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-I/usr/include",
+      "-O3",
+      "-I..",
+      "-g",
+      "-c",
+      "-o",
+      "main.o",
+      "main.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/source/minilibx/test",
+    "file": "/home/nbardavi/Desktop/cub3d/source/minilibx/test/main.c",
+    "output": "/home/nbardavi/Desktop/cub3d/source/minilibx/test/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/custom_utils/ft_strcmp.o",
+      "sources/custom_utils/ft_strcmp.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/custom_utils/ft_strcmp.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/custom_utils/ft_strcmp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/custom_utils/ft_strjoin_free.o",
+      "sources/custom_utils/ft_strjoin_free.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/custom_utils/ft_strjoin_free.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/custom_utils/ft_strjoin_free.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_exec_d.o",
+      "sources/ft_printf/ft_exec_d.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_exec_d.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_exec_d.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_exec_flags.o",
+      "sources/ft_printf/ft_exec_flags.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_exec_flags.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_exec_flags.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_fcustoms.o",
+      "sources/ft_printf/ft_fcustoms.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_fcustoms.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_fcustoms.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_flags.o",
+      "sources/ft_printf/ft_flags.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_flags.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_flags.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_fsource.o",
+      "sources/ft_printf/ft_fsource.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_fsource.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_fsource.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_itoa_u.o",
+      "sources/ft_printf/ft_itoa_u.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_itoa_u.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_itoa_u.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/fd_printf.o",
+      "sources/ft_printf/fd_printf.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/fd_printf.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/fd_printf.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_printf.o",
+      "sources/ft_printf/ft_printf.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_printf.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_printf.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_sprintf.o",
+      "sources/ft_printf/ft_sprintf.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_sprintf.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_sprintf.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_tohexa.o",
+      "sources/ft_printf/ft_tohexa.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_tohexa.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_tohexa.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_tools2.o",
+      "sources/ft_printf/ft_tools2.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_tools2.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_tools2.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/ft_printf/ft_tools.o",
+      "sources/ft_printf/ft_tools.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/ft_printf/ft_tools.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/ft_printf/ft_tools.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_atoi.o",
+      "sources/libft/ft_atoi.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_atoi.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_atoi.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_bzero.o",
+      "sources/libft/ft_bzero.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_bzero.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_bzero.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_calloc.o",
+      "sources/libft/ft_calloc.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_calloc.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_calloc.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_isalnum.o",
+      "sources/libft/ft_isalnum.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_isalnum.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_isalnum.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_isalpha.o",
+      "sources/libft/ft_isalpha.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_isalpha.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_isalpha.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_isascii.o",
+      "sources/libft/ft_isascii.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_isascii.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_isascii.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_isdigit.o",
+      "sources/libft/ft_isdigit.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_isdigit.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_isdigit.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_isprint.o",
+      "sources/libft/ft_isprint.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_isprint.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_isprint.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_itoa.o",
+      "sources/libft/ft_itoa.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_itoa.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_itoa.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_litoa.o",
+      "sources/libft/ft_litoa.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_litoa.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_litoa.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_lstadd_back.o",
+      "sources/libft/ft_lstadd_back.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_lstadd_back.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_lstadd_back.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_lstadd_front.o",
+      "sources/libft/ft_lstadd_front.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_lstadd_front.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_lstadd_front.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_lstclear.o",
+      "sources/libft/ft_lstclear.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_lstclear.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_lstclear.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_lstdelone.o",
+      "sources/libft/ft_lstdelone.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_lstdelone.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_lstdelone.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_lstiter.o",
+      "sources/libft/ft_lstiter.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_lstiter.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_lstiter.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_lstlast.o",
+      "sources/libft/ft_lstlast.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_lstlast.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_lstlast.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_lstmap.o",
+      "sources/libft/ft_lstmap.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_lstmap.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_lstmap.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_lstnew.o",
+      "sources/libft/ft_lstnew.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_lstnew.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_lstnew.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_lstsize.o",
+      "sources/libft/ft_lstsize.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_lstsize.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_lstsize.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_memchr.o",
+      "sources/libft/ft_memchr.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_memchr.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_memchr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_memcmp.o",
+      "sources/libft/ft_memcmp.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_memcmp.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_memcmp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_memcpy.o",
+      "sources/libft/ft_memcpy.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_memcpy.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_memcpy.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_memmove.o",
+      "sources/libft/ft_memmove.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_memmove.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_memmove.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_memset.o",
+      "sources/libft/ft_memset.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_memset.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_memset.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_putchar_fd.o",
+      "sources/libft/ft_putchar_fd.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_putchar_fd.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_putchar_fd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_putendl_fd.o",
+      "sources/libft/ft_putendl_fd.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_putendl_fd.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_putendl_fd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_putnbr_fd.o",
+      "sources/libft/ft_putnbr_fd.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_putnbr_fd.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_putnbr_fd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_putstr_fd.o",
+      "sources/libft/ft_putstr_fd.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_putstr_fd.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_putstr_fd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_split.o",
+      "sources/libft/ft_split.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_split.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_split.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strchr.o",
+      "sources/libft/ft_strchr.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strchr.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strchr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strdup.o",
+      "sources/libft/ft_strdup.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strdup.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strdup.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_striteri.o",
+      "sources/libft/ft_striteri.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_striteri.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_striteri.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strjoin.o",
+      "sources/libft/ft_strjoin.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strjoin.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strjoin.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strlcat.o",
+      "sources/libft/ft_strlcat.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strlcat.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strlcat.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strlcpy.o",
+      "sources/libft/ft_strlcpy.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strlcpy.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strlcpy.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strlen.o",
+      "sources/libft/ft_strlen.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strlen.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strlen.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strmapi.o",
+      "sources/libft/ft_strmapi.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strmapi.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strmapi.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strncmp.o",
+      "sources/libft/ft_strncmp.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strncmp.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strncmp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strnstr.o",
+      "sources/libft/ft_strnstr.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strnstr.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strnstr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strrchr.o",
+      "sources/libft/ft_strrchr.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strrchr.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strrchr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_strtrim.o",
+      "sources/libft/ft_strtrim.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_strtrim.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_strtrim.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_substr.o",
+      "sources/libft/ft_substr.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_substr.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_substr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_tolower.o",
+      "sources/libft/ft_tolower.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_tolower.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_tolower.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g3",
+      "-c",
+      "-o",
+      "objets/libft/ft_toupper.o",
+      "sources/libft/ft_toupper.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d/libftprintf",
+    "file": "/home/nbardavi/Desktop/cub3d/libftprintf/sources/libft/ft_toupper.c",
+    "output": "/home/nbardavi/Desktop/cub3d/libftprintf/objets/libft/ft_toupper.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/main.o",
+      "source/main.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/main.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/parsing/utils.o",
+      "source/parsing/utils.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/parsing/utils.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/parsing/utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/parsing/utils_two.o",
+      "source/parsing/utils_two.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/parsing/utils_two.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/parsing/utils_two.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/parsing/get_raw_map.o",
+      "source/parsing/get_raw_map.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/parsing/get_raw_map.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/parsing/get_raw_map.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/parsing/check_order.o",
+      "source/parsing/check_order.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/parsing/check_order.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/parsing/check_order.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/parsing/other_checks.o",
+      "source/parsing/other_checks.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/parsing/other_checks.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/parsing/other_checks.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/parsing/get_colors.o",
+      "source/parsing/get_colors.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/parsing/get_colors.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/parsing/get_colors.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/parsing/tab_manip.o",
+      "source/parsing/tab_manip.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/parsing/tab_manip.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/parsing/tab_manip.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/parsing/get_texture_paths.o",
+      "source/parsing/get_texture_paths.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/parsing/get_texture_paths.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/parsing/get_texture_paths.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/parsing/free.o",
+      "source/parsing/free.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/parsing/free.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/parsing/free.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/init_player.o",
+      "source/run/init_player.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/init_player.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/init_player.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/draw.o",
+      "source/run/draw.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/draw.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/draw.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/hooks.o",
+      "source/run/hooks.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/hooks.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/hooks.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/minimap_display.o",
+      "source/run/minimap_display.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/minimap_display.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/minimap_display.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/circle_matrix_rotation.o",
+      "source/run/circle_matrix_rotation.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/circle_matrix_rotation.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/circle_matrix_rotation.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/circle_matrix.o",
+      "source/run/circle_matrix.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/circle_matrix.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/circle_matrix.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/inits.o",
+      "source/run/inits.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/inits.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/inits.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/inits_two.o",
+      "source/run/inits_two.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/inits_two.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/inits_two.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/utils.o",
+      "source/run/utils.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/utils.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/ray_casting.o",
+      "source/run/ray_casting.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/ray_casting.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/ray_casting.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/inits_ray.o",
+      "source/run/inits_ray.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/inits_ray.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/inits_ray.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/display.o",
+      "source/run/display.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/display.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/display.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/mouvements/mouvements.o",
+      "source/mouvements/mouvements.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/mouvements/mouvements.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/mouvements/mouvements.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/animations/fps.o",
+      "source/animations/fps.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/animations/fps.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/animations/fps.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/animations/hud.o",
+      "source/animations/hud.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/animations/hud.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/animations/hud.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/mouvements/mouse.o",
+      "source/mouvements/mouse.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/mouvements/mouse.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/mouvements/mouse.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Werror",
+      "-Wextra",
+      "-g3",
+      "-D",
+      "BONUS=1",
+      "-c",
+      "-o",
+      "objects/run/key_handler.o",
+      "source/run/key_handler.c"
+    ],
+    "directory": "/home/nbardavi/Desktop/cub3d",
+    "file": "/home/nbardavi/Desktop/cub3d/source/run/key_handler.c",
+    "output": "/home/nbardavi/Desktop/cub3d/objects/run/key_handler.o"
+  }
+]

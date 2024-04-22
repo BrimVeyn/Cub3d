@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture_paths.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:26:21 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/10 15:57:41 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:15:24 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+#include <stdlib.h>
 
 int	ft_directioncmp(char *str)
 {
@@ -54,6 +55,12 @@ int	get_texture_paths(t_data *data)
 	i = 0;
 	count = 0;
 	data->texture_paths = ft_calloc(5, sizeof(char *));
+	if (!data->texture_paths)
+	{
+		free(data->fps);
+		free(data);
+		exit(EXIT_FAILURE);
+	}
 	while (data->map[i])
 	{
 		off = ws_count(data->map[i]);
@@ -66,6 +73,8 @@ int	get_texture_paths(t_data *data)
 			data->texture_paths[dir] = ft_substr(data->map[i], off + 2,
 					ft_strlen(data->map[i]) - 3);
 			data->map = ft_delindex(data->map, i);
+			if (!data->map)
+				close_and_exit(data);
 			count++;
 			i = 0;
 		}

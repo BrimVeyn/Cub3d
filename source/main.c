@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:04:19 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 10:28:14 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:20:38 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "minilibx/mlx.h"
 #include <X11/X.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void	display(char **map);
 void	print_strings(t_data *data);
@@ -30,7 +31,11 @@ int	parse_map(int map_fd, t_data *data)
 	if (check_onedir(data) == ERROR)
 		display_error("Cub3d: Only one player is allowed", data);
 	data->map = del_blank(data->map);
+	if (!data->map)
+		close_and_exit(data);
 	data->map = fill_blank(data->map);
+	if (!data->map)
+		close_and_exit(data);
 	if (check_closed(data) == ERROR)
 		display_error("Cube3d: Map is not closed\n", data);
 	if (check_multimap(data) == ERROR)
@@ -123,7 +128,14 @@ int	main(int ac, char **av)
 	t_data	*data;
 
 	data = ft_calloc(2, sizeof(t_data));
+	if (!data)
+		exit(EXIT_FAILURE);
 	data->fps = ft_calloc(2, sizeof(t_fps));
+	if (!data->fps)
+	{
+		free(data);
+		exit(EXIT_FAILURE);
+	}
 	data->fps->old_time = get_time();
 	if (ac != 2)
 		display_error("Cub3d: Usage: ./cub3d <path_to_map>\n", data);
