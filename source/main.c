@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:04:19 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:38:16 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 09:41:31 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 #include <X11/X.h>
 #include <stdio.h>
 
-void	display(char **map)
-{
-	for (int i = 0; map[i]; i++)
-		printf("%s\n", map[i]);
-}
+void	display(char **map);
+void	print_strings(t_data *data);
 
 int	parse_map(int map_fd, t_data *data)
 {
@@ -48,7 +45,6 @@ int	parse_map(int map_fd, t_data *data)
 int	ray_loop(void *param)
 {
 	t_data	*data;
-	char	*fps;
 
 	data = (t_data *)param;
 	view_changed(data);
@@ -64,16 +60,7 @@ int	ray_loop(void *param)
 		gun_animation(data);
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->imgs->img, 0, 0);
-	if (BONUS)
-		mlx_put_image_to_window(data->mlx, data->window, data->minimap_img->img,
-			30 + data->minimap->draw_size / 2, 30 + data->minimap->draw_size
-			/ 2);
-	mlx_set_font(data->mlx, data->window, "8x16");
-	data->fps->fps_number = 1000.0 / (get_time() - data->fps->old_time);
-	fps = ft_sprintf("fps: %d", (int)data->fps->fps_number);
-	mlx_string_put(data->mlx, data->window, 930, 20, 0xFFFFFF, fps);
-	free(fps);
-	data->fps->old_time = get_time();
+	print_strings(data);
 	return (TRUE);
 }
 
@@ -89,11 +76,11 @@ int	*xpm_to_tab(t_data *data, int *width, int *height, char *path)
 		display_error("Error, couldn't load texture.\n", data);
 	tmp.addr_int = (int *)mlx_get_data_addr(tmp.img, &tmp.bpp, &tmp.line_lengh,
 			&tmp.endian);
-	buffer = ft_calloc(1, sizeof *buffer * *width * *height);
+	buffer = ft_calloc(1, sizeof * buffer * *width * *height);
 	if (!buffer)
 		display_error("Cub3d: Error allocating buffer\n", data);
-	y = 0;
-	while (y < *height)
+	y = -1;
+	while (++y < *height)
 	{
 		x = 0;
 		while (x < *width)
@@ -101,7 +88,6 @@ int	*xpm_to_tab(t_data *data, int *width, int *height, char *path)
 			buffer[y * *width + x] = tmp.addr_int[y * *width + x];
 			++x;
 		}
-		y++;
 	}
 	mlx_destroy_image(data->mlx, tmp.img);
 	return (buffer);

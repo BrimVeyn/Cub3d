@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:16:18 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:33:58 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 09:30:27 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,7 @@ void	ray_cast(t_data *data)
 		ray->x++;
 	}
 	if (ray->aiming_at_open_door || ray->aiming_at_door)
-		printf("do\n"); // LARBIN
+		data->ray->t_txt_door = 1;
+	else
+		data->ray->t_txt_door = 0;
 }

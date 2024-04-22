@@ -26,6 +26,7 @@ SRC 			:= source/main.c \
 				   source/run/utils.c \
 				   source/run/ray_casting.c \
 				   source/run/inits_ray.c \
+				   source/run/display.c \
 				   source/mouvements/mouvements.c \
 				   source/animations/fps.c \
 				   source/animations/hud.c \
