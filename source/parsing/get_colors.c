@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:29:34 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/11 15:10:45 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:14:59 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	get_colors(t_data *data)
 				|| get_componants(data, i, idx, off) == ERROR)
 				return (ERROR);
 			data->map = ft_delindex(data->map, i);
+			if (!data->map)
+				close_and_exit(data);
 			count++;
 			i = 0;
 		}
