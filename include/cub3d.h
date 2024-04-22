@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
+/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:03:12 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 09:29:54 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:29:18 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,6 +288,7 @@ void			init_e(t_data *data);
 void	display(char **map); // fonction utilitaire a supprimer
 void			calcul_hud(t_data *data);
 void	mm(t_data *data, int i, int j, int color);
+void	free_int_tab(int **tab, int size);
 
 void			ray_cast(t_data *data);
 

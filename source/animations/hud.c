@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
+/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:53:29 by nbardavi          #+#    #+#             */
-/*   Updated: 2024/04/12 13:46:31 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:22:26 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	calcul_hud(t_data *data)
 			"./textures/gun_sprites/gun_shoot01.xpm");
 	data->hud->frames[SHOOT02].addr_int = xpm_to_tab(data, &w, &h,
 			"./textures/gun_sprites/gun_shoot02.xpm");
-	printf("%d", data->hud->frames[IDLE].addr_int[1]);
 	while (i < 4)
 	{
 		data->hud->frames[i].width = 512;
