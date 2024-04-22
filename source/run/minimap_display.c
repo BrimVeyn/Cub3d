@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_display.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:55:58 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:38:34 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:10:20 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	render_minimap(t_data *data)
 	circle_matrix_rotation(data, m->angle);
 }
 
-void fill_coord_matrix(t_minimap *m, char **map, t_player *p)
+void	fill_coord_matrix(t_minimap *m, char **map, t_player *p)
 {
 	while (m->y < m->draw_size)
 	{
@@ -91,20 +91,18 @@ void fill_coord_matrix(t_minimap *m, char **map, t_player *p)
 			|| map[m->curr_pos_x][m->curr_pos_y] == '2')
 			m->coord_matrix[m->x][m->y] = -1;
 		if ((map[m->curr_pos_x][m->curr_pos_y] == 'N'
-				|| map[m->curr_pos_x][m->curr_pos_y] == 'S'
-				|| map[m->curr_pos_x][m->curr_pos_y] == 'W'
-				|| map[m->curr_pos_x][m->curr_pos_y] == 'E')
-			&& ((int)p->posx != m->curr_pos_x
-				|| (int)p->posy != m->curr_pos_y))
+			|| map[m->curr_pos_x][m->curr_pos_y] == 'S'
+			|| map[m->curr_pos_x][m->curr_pos_y] == 'W'
+			|| map[m->curr_pos_x][m->curr_pos_y] == 'E')
+			&& ((int)p->posx != m->curr_pos_x || (int)p->posy != m->curr_pos_y))
 			m->coord_matrix[m->x][m->y] = 0;
-		else if ((int)p->posx == m->curr_pos_x
-			&& (int)p->posy == m->curr_pos_y)
+		else if ((int)p->posx == m->curr_pos_x && (int)p->posy == m->curr_pos_y)
 			m->coord_matrix[m->x][m->y] = 30;
 		else
-			m->coord_matrix[m->x][m->y] = map[m->curr_pos_x][m->curr_pos_y] - 48;
+			m->coord_matrix[m->x][m->y] = map[m->curr_pos_x][m->curr_pos_y]
+				- 48;
 		m->y++;
 	}
-
 }
 
 void	display_minimap(t_data *data)
@@ -124,8 +122,8 @@ void	display_minimap(t_data *data)
 	while (m->x < m->draw_size)
 	{
 		m->y = 0;
-		m->curr_pos_x = (int)p->posx + (((m->draw_size - m->x) / m->minimap_scale)
-				- (m->area / 2));
+		m->curr_pos_x = (int)p->posx + (((m->draw_size - m->x)
+					/ m->minimap_scale) - (m->area / 2));
 		if (m->curr_pos_x < 0 || m->curr_pos_x > m->map_height - 1)
 			while (m->y < m->minimap_size * m->minimap_scale)
 				m->coord_matrix[m->x][m->y++] = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inits_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:57:46 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:40:56 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:05:45 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_helpeuse(t_line *line, t_data *data, t_ray *ray)
 	line->span = data->tex_size;
 	line->off = 0;
 }
+
 void	init_line_vars(t_line *line, t_data *data, t_ray *ray)
 {
 	line->lineheight = (int)(HEIGHT / ray->perpwalldist);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:03:12 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:38:12 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 09:29:54 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ typedef struct s_ray
 	int			aiming_at_open_door;
 	int			door_coord_x;
 	int			door_coord_y;
+	int			t_txt_door;
 
 }				t_ray;
 
