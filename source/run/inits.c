@@ -6,7 +6,7 @@
 /*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:22:18 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 15:10:17 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:18:55 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	init_data(t_data *data)
 	data->player = ft_calloc(2, sizeof(t_player));
 	data->minimap = ft_calloc(2, sizeof(t_minimap));
 	data->line = ft_calloc(2, sizeof(t_line));
-	data->minimap_img = ft_calloc(2, sizeof(t_img_data));
 	fill_player_position(data);
 	if (data->map[(int)data->player->posx][(int)data->player->posy] == 'N')
 		init_n(data);

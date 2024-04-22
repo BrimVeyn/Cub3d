@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
+/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:04:19 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 09:41:31 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:28:14 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,10 @@ void	run_map(t_data *data)
 	mlx_hook(data->window, KeyPress, KeyPressMask, key_handler, data);
 	mlx_hook(data->window, KeyRelease, KeyReleaseMask, key_release_handler,
 		data);
-	mlx_mouse_hide(data->mlx, data->window);
+	// mlx_mouse_hide(data->mlx, data->window);
 	mlx_hook(data->window, MotionNotify, PointerMotionMask, handle_mouvement,
 		data);
 	mlx_mouse_hook(data->window, handle_mouse, data);
-	mlx_mouse_hide(data->mlx, data->window);
 	mlx_loop_hook(data->mlx, &ray_loop, (void *)data);
 	mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 	mlx_loop(data->mlx);
