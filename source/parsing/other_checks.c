@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:35:13 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/12 10:37:18 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:37:35 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ int	check_all_direction(char **map, int i, int j)
 			+ 1][j] == '2') || (!map[i + 1][j + 1] || map[i + 1][j + 1] == '2'))
 		return (ERROR);
 	return (TRUE);
-}
-
-int	ft_isdir(char c)
-{
-	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
-		return (TRUE);
-	return (ERROR);
 }
 
 int	wrong_char(char c)

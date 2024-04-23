@@ -36,7 +36,8 @@ void	init_data(t_data *data)
 	data->player = ft_calloc(2, sizeof(t_player));
 	data->minimap = ft_calloc(2, sizeof(t_minimap));
 	data->line = ft_calloc(2, sizeof(t_line));
-	if (!data->imgs || !data->ray || !data->player || !data->minimap || !data->line)
+	if (!data->imgs || !data->ray || !data->player || !data->minimap
+		|| !data->line)
 		close_and_exit(data);
 	fill_player_position(data);
 	if (data->map[(int)data->player->posx][(int)data->player->posy] == 'N')

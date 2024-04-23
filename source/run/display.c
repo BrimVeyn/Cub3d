@@ -6,17 +6,11 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 09:36:30 by nbardavi          #+#    #+#             */
-/*   Updated: 2024/04/22 10:03:50 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:37:46 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	display(char **map)
-{
-	for (int i = 0; map[i]; i++)
-		printf("%s\n", map[i]);
-}
 
 void	print_strings(t_data *data)
 {

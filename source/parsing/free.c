@@ -61,7 +61,7 @@ void	free_data_bis(t_data *data)
 void	free_data(t_data *data)
 {
 	if (data->window)
-    {
+	{
 		mlx_mouse_show(data->mlx, data->window);
 		mlx_clear_window(data->mlx, data->window);
 		mlx_destroy_image(data->mlx, data->imgs->img);
@@ -72,7 +72,8 @@ void	free_data(t_data *data)
 		free_int_tab(data->minimap->coord_matrix, data->minimap->draw_size);
 		free_int_tab(data->minimap->circle_matrix, data->minimap->draw_size);
 		free_int_tab(data->minimap->rotated_matrix, data->minimap->draw_size);
-		free_int_tab(data->minimap->filled_circle_matrix, data->minimap->draw_size);
+		free_int_tab(data->minimap->filled_circle_matrix,
+			data->minimap->draw_size);
 		free(data->mlx);
 		free(data->hud->frames[0].addr_int);
 		free(data->hud->frames[1].addr_int);
@@ -80,6 +81,6 @@ void	free_data(t_data *data)
 		free(data->hud->frames[3].addr_int);
 		free(data->hud->frames);
 		free(data->minimap->colors);
-    }
+	}
 	free_data_bis(data);
 }

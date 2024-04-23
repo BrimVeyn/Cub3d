@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
+/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:34:15 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 13:34:16 by bvan-pae         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:48:00 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	display(char **map);
 void	print_strings(t_data *data);
 
 int	parse_map(int map_fd, t_data *data)
@@ -112,7 +111,7 @@ void	run_map(t_data *data)
 	mlx_hook(data->window, KeyPress, KeyPressMask, key_handler, data);
 	mlx_hook(data->window, KeyRelease, KeyReleaseMask, key_release_handler,
 		data);
-	// mlx_mouse_hide(data->mlx, data->window);
+	mlx_mouse_hide(data->mlx, data->window);
 	mlx_hook(data->window, MotionNotify, PointerMotionMask, handle_mouvement,
 		data);
 	mlx_mouse_hook(data->window, handle_mouse, data);
