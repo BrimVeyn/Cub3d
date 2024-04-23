@@ -48,12 +48,12 @@ char	**fill_blank(char **map)
 	llength = get_llength(map);
 	new_map = ft_calloc(len + 1, sizeof(char *));
 	if (!new_map)
-		return(NULL);
+		return (NULL);
 	while (i < len)
 	{
 		new_map[i++] = ft_calloc(llength + 1, sizeof(char));
 		if (!new_map[i - 1])
-			return(NULL);
+			return (NULL);
 	}
 	fill_new_map(new_map, map, llength);
 	free_tab(map);
@@ -70,7 +70,7 @@ char	**ft_delindex(char **split, int i)
 	k = 0;
 	new = ft_calloc(ft_tablen(split) + 2, sizeof(char *));
 	if (!new)
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	while (split[j] && j != i)
 	{
 		new[k++] = ft_strdup(split[j]);
@@ -123,12 +123,12 @@ char	**del_blank(char **map)
 	old_map_len = ft_tablen(map);
 	new_map = ft_calloc(old_map_len - n + 1, sizeof(char *));
 	if (!new_map)
-		return(NULL);
+		return (NULL);
 	while (i < old_map_len - n)
 	{
 		new_map[i] = ft_strdup(map[j]);
 		if (!new_map[i])
-			return(NULL);
+			return (NULL);
 		i++;
 		j++;
 	}

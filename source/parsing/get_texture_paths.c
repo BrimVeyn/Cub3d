@@ -45,10 +45,10 @@ int	check_perms(t_data *data)
 	return (TRUE);
 }
 
-int get_texture_paths_loop(t_data *data, int *i, int *count)
+int	get_texture_paths_loop(t_data *data, int *i, int *count)
 {
-	int off;
-	int dir;
+	int	off;
+	int	dir;
 
 	off = ws_count(data->map[*i]);
 	dir = ft_directioncmp(&data->map[*i][off]);

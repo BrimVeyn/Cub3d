@@ -59,10 +59,10 @@ void	circle_helper(t_data *data, int *x, double *cs, int *new)
 	t_minimap	*m;
 
 	m = data->minimap;
-	new[0] = ((x[0] - m->center_x) * cs[0]) - ((x[1] - m->center_y)
-			* cs[1]) + m->center_x;
-	new[1] = ((x[0] - m->center_x) * cs[1]) + ((x[1] - m->center_y)
-			* cs[0]) + m->center_y;
+	new[0] = ((x[0] - m->center_x) * cs[0]) - ((x[1] - m->center_y) * cs[1])
+		+ m->center_x;
+	new[1] = ((x[0] - m->center_x) * cs[1]) + ((x[1] - m->center_y) * cs[0])
+		+ m->center_y;
 	m->rotated_matrix[m->draw_size - x[0] - 1][m->draw_size - x[1]
 		- 1] = m->filled_circle_matrix[new[0]][new[1]];
 }

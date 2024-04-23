@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:57:13 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 10:03:00 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:37:33 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,11 @@ int	get_map_height(t_data *data)
 void	mm(t_data *data, int i, int j, int color)
 {
 	my_mlx_pixel_put(data, i, j, color);
+}
+
+int	ft_isdir(char c)
+{
+	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+		return (TRUE);
+	return (ERROR);
 }
