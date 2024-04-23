@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
+/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:57:13 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 13:37:33 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:38:47 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,14 @@ int	ft_isdir(char c)
 {
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		return (TRUE);
+	return (ERROR);
+}
+
+int	ft_colorcmp(char c)
+{
+	if (c == 'F')
+		return (C_F);
+	if (c == 'C')
+		return (C_C);
 	return (ERROR);
 }

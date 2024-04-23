@@ -1,14 +1,14 @@
+SO ./textures/cracked_polished_blackstone_bricks.xpm
+C 139,216,		224
 NO ./textures/cracked_deepslate_tiles.xpm
-SO ./textures/stripped_spruce_log.xpm
-C 174, 217, 224
-WE ./textures/spruce_planks.xpm
-EA ./textures/cracked_polished_blackstone_bricks.xpm
-F 255,			243,		221
+EA ./textures/spruce_planks.xpm
+WE ./textures/stripped_spruce_log.xpm
+F			84		,57			,34
 
         1111111111111111111111111
         100D000000110000000000001
         1011000001110000000000001
-        10010000000D0000N00000001
+        10010000000D0000W00000001
 111111111011000001110000000000001
 100000000011000001110111111111111
 11110111111111D11100000010001

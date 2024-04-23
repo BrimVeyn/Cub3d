@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
+/*   By: bvan-pae <bryan.vanpaemel@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 15:03:12 by bvan-pae          #+#    #+#             */
-/*   Updated: 2024/04/22 13:38:51 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:22:53 by bvan-pae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@
 enum
 {
 	DIR_NO,
-	DIR_SO,
-	DIR_WE,
 	DIR_EA,
+	DIR_WE,
+	DIR_SO,
 };
 
 enum
